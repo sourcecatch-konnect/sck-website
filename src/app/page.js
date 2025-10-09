@@ -267,8 +267,8 @@ export default function Page() {
                 <div>
                   <p className="text-sm md:text-base">
                     We could tell you how awesome our projects are… but why
-                    spoil the surprise? 🤫 Click and see the problems we've
-                    solved and the ideas we've brought to life.
+                    spoil the surprise? 🤫 Click and see the problems we&apos;ve
+                    solved and the ideas we&apos;ve brought to life.
                   </p>
                 </div>
                 <div className="mt-3">
