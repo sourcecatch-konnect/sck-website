@@ -1,4 +1,4 @@
-import { Open_Sans } from "next/font/google";
+import { Open_Sans, Passion_One } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header/Header";
 import Footer from "./components/Footer";
@@ -8,6 +8,11 @@ const openSans = Open_Sans({
   variable: "--font-open-sans",
   subsets: ["latin"],
 });
+const passionOne = Passion_One({
+  variable: "--font-passion-one",
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export const metadata = {
   title: "SourceCatch Konnect Private Limited | Digital Marketing ",
@@ -16,8 +21,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${openSans.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${openSans.variable} ${passionOne.variable}   antialiased`}
+      >
         <Header />
         {children}
         <SmoothCursor />

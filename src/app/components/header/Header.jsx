@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Logo from "./Logo";
 import {
   Sheet,
@@ -11,19 +11,30 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { IconMenuDeep } from "@tabler/icons-react";
-import clsx from "clsx";
 
+import { IconMenuDeep, IconPhone } from "@tabler/icons-react";
+import clsx from "clsx";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { WavyBackground } from "@/components/ui/wavy-background";
+import { Vortex } from "@/components/ui/vortex";
+import { BackgroundBeams } from "@/components/ui/background-beams";
+import { RainbowButton } from "@/components/ui/rainbow-button";
 export default function Header() {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [darkText, setDarkText] = useState(false); // 👈 for toggling color
+  const [darkText, setDarkText] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
+    // if (!isHome) return;
+
     const handleScroll = () => {
       const currentY = window.scrollY;
 
-      // Hide/Show header
       if (currentY > lastScrollY + 10) {
         setShow(false);
       } else if (currentY < lastScrollY - 10) {
@@ -44,6 +55,39 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  const words = "READY TO EXPLORE ?";
+
+  const hamburgerLinks = [
+    {
+      name: "Home",
+      url: "/",
+    },
+    {
+      name: "Our Work",
+      url: "/our-projects",
+    },
+    {
+      name: "About Us",
+      url: "/about-us",
+    },
+    {
+      name: "Design",
+      url: "/design",
+    },
+    {
+      name: "Develop",
+      url: "/develop",
+    },
+    {
+      name: "Market",
+      url: "/market",
+    },
+    {
+      name: "Contact Us",
+      url: "/contact-us",
+    },
+  ];
+
   return (
     <motion.header
       animate={{ y: show ? 0 : -100 }}
@@ -55,19 +99,32 @@ export default function Header() {
           darkText ? "bg-white/60" : "bg-white/10"
         } justify-between items-center py-2 px-6 rounded-2xl transition-all duration-500`}
       >
-        <Logo />
+        <Logo darkText={darkText} />
         <nav>
           <ul
             className={`flex gap-6 text-[15px] font-light tracking-wide transition-colors duration-300 ${
               darkText ? "text-black/90" : "text-white/90"
             }`}
           >
-            <li className="hover:opacity-100 opacity-80">PRICING</li>
-            <li className="hover:opacity-100 opacity-80">OUR WORK</li>
-            <li className="hover:opacity-100 opacity-80">ABOUT US</li>
-            <li className="hover:opacity-100 opacity-80">DESIGN</li>
-            <li className="hover:opacity-100 opacity-80">DEVELOP</li>
-            <li className="hover:opacity-100 opacity-80">MARKET</li>
+            {/* <li className="hover:opacity-100 opacity-80">PRICING</li> */}
+            <li className="hover:opacity-100 opacity-80">
+              <Link href={"/our-projects"}>OUR WORK</Link>
+            </li>
+            <li className="hover:opacity-100 opacity-80">
+              <Link href={"/about-us"}>ABOUT US</Link>
+            </li>
+            <li className="hover:opacity-100 opacity-80">
+              <Link href={"/design"}>DESIGN</Link>
+            </li>
+            <li className="hover:opacity-100 opacity-80">
+              <Link href={"/develop"}>DEVELOP</Link>
+            </li>
+            <li className="hover:opacity-100 opacity-80">
+              <Link href={"/market"}>MARKET</Link>
+            </li>
+            <li className="hover:opacity-100 opacity-80">
+              <Link href={"/contact"}>CONTACT</Link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -84,13 +141,41 @@ export default function Header() {
             />
           </SheetTrigger>
           <SheetContent>
-            <SheetHeader>
-              <SheetTitle>Are you absolutely sure?</SheetTitle>
-              <SheetDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-              </SheetDescription>
-            </SheetHeader>
+            <div className={"relative h-full w-full"}>
+              <SheetHeader className={"border-b"}>
+                <SheetTitle
+                  className={"text-bold text-primary text-xl uppercase"}
+                >
+                  <TextGenerateEffect
+                    className={"text-primary"}
+                    words={words}
+                  />
+                </SheetTitle>
+                <SheetDescription className={"text-base"}>
+                  Dive into our world of design, code, and creativity.
+                </SheetDescription>
+              </SheetHeader>
+
+              <div className=" mt-8 px-3 py-3 z-20  w-full ">
+                <div className="flex flex-col gap-2 w-full h-full">
+                  {hamburgerLinks.map((item, index) => (
+                    <Link
+                      className="text-black  font-semibold py-2 px-2 "
+                      key={index}
+                      href={item.url}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <div className=" px-3 w-full mt-8">
+                <RainbowButton className="flex gap-2 w-full text-base ">
+                  <IconPhone className="size-5" />
+                  Schedule A Call
+                </RainbowButton>
+              </div>
+            </div>
           </SheetContent>
         </Sheet>
       </div>

@@ -39,6 +39,8 @@ import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { TracingBeam } from "@/components/ui/tracing-beam";
 import { Spotlight } from "@/components/ui/spotlight";
 import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
+import { MagicCard } from "@/components/ui/magic-card";
+import { ShineBorder } from "@/components/ui/shine-border";
 
 export default function Page() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -84,48 +86,42 @@ export default function Page() {
     {
       name: "The Fabric Nation",
       heading: "90X ROI in 3 Months (Yes, You Read That Right)",
-      bannerURL:
-        "https://images.unsplash.com/photo-1735014112085-ad2ece33840f?q=80&w=870&auto=format&fit=crop",
+      bannerURL: "/projects-banner/tfn-banner.jpg",
       description:
         "We built a sleek, conversion-optimized eCommerce platform for The Fabric Nation — and our Meta Ads performance marketing didn’t just perform… it *performed*. The brand hit a whopping 9x ROAS for three consecutive months. Tailored results, literally. 👕✨",
     },
     {
       name: "Indinite",
       heading: "10K Pounds in Ticket Sales — Straight Outta UK",
-      bannerURL:
-        "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=870&auto=format&fit=crop",
+      bannerURL: "/projects-banner/indinite-banner.webp",
       description:
         "Developed a full-scale UK-based event booking platform handling events smoother than British tea time. 💂‍♂️ With over £10,000 in ticket sales, Indinite became the go-to for event organizers looking to level up their digital experience.",
     },
     {
       name: "Crest Projects",
       heading: "Construction, But Make It Creative 🧱",
-      bannerURL:
-        "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=870&auto=format&fit=crop",
+      bannerURL: "/projects-banner/crest-banner.webp",
       description:
         "Built a modern and expressive construction profile website for Crest Projects — complete with dynamic project pages, sleek portfolios, and a design that screams ‘built different’.",
     },
     {
       name: "DBN London",
       heading: "Turning Events into 2X Profits Every Month",
-      bannerURL:
-        "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=870&auto=format&fit=crop",
+      bannerURL: "/projects-banner/dbn-banner.webp",
       description:
         "Running ongoing performance marketing campaigns for DBN London — pulling consistent 2x ROAS month after month. The events are loud, but the results speak louder. 📈",
     },
     {
       name: "Baba Namkeen",
       heading: "When Snacks Met Sales 🍿",
-      bannerURL:
-        "https://images.unsplash.com/photo-1601050690597-1b9bc40d7f9e?q=80&w=870&auto=format&fit=crop",
+      bannerURL: "/projects-banner/babaNamkeen-banner.webp",
       description:
         "Created a full-fledged eCommerce experience for Baba Namkeen. Crispy design, spicy conversions — because why should snacks have all the crunch?",
     },
     {
       name: "Shamali Polymats",
       heading: "Expanding B2B Horizons — Straight to the Gulf 🌍",
-      bannerURL:
-        "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=870&auto=format&fit=crop",
+      bannerURL: "/projects-banner/shamali-banner.webp",
       description:
         "Developed a lead-gen focused B2B website tailored for the Gulf markets. With precision design and clear CTAs, Shamali Polymats now rolls out leads faster than their mats.",
     },
@@ -147,6 +143,7 @@ export default function Page() {
 
   return (
     <>
+      {/* HERO SECTION */}
       <div className="min-h-screen flex items-center bg-black relative">
         <div className="absolute top-0 left-0 h-full w-full  overflow-hidden">
           <RetroGrid opacity={0.3} />
@@ -197,6 +194,7 @@ export default function Page() {
           }
         `}</style>
       </div>
+      {/* CLIENT CAROUSEL */}
       <div className="min-h-50 py-20  w-full">
         <div className="max-w-6xl  mx-auto flex flex-col gap-3 items-center">
           <span className="italic text-xl font-semibold">
@@ -205,6 +203,7 @@ export default function Page() {
           <ClientCarousel reviews={clientLogo} />
         </div>
       </div>
+      {/* OUR ACHIEVEMENTS */}
       <div className="  w-full flex flex-col gap-5">
         <div className="relative max-w-6xl mx-auto bg-cover w-full h-70 md:h-100  bg-[url(/achivement-img-2.jpg)] p-10 flex flex-col rounded-sm items-center justify-center">
           <div className="absolute top-0 left-0 w-full h-full mx-auto bg-black/40 "></div>
@@ -285,6 +284,7 @@ export default function Page() {
           </div>
         </div>
       </div>
+      {/* PROBLEM STATEMENT */}
       <div className="w-full flex flex-col py-10">
         <div className="max-w-6xl w-full mx-auto p-10">
           <div className="flex flex-col items-center  pb-20 text-md gap-5">
@@ -375,6 +375,7 @@ export default function Page() {
           </div>
         </div>
       </div>
+      {/* OUR SERVICES */}
       <div className="w-full min-h-100 flex flex-col overflow-hidden gap-3 bg-[#171719]">
         <div className="h-8 bg-primary"></div>
 
@@ -471,7 +472,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-
+      {/* PERFORMANCE MARKETING CTA */}
       <div className="w-full min-h-200 flex flex-col gap-3 overflow-hidden">
         <div className="max-w-6xl w-full mx-auto py-14 ">
           <div className="flex justify-center flex-col gap-2 items-center">
@@ -578,6 +579,7 @@ export default function Page() {
           </div>
         </div>
       </div>
+      {/* PROUD PROJECTS */}
       <div className="w-full min-h-200 flex flex-col gap-3 overflow-hidden ">
         <div className="max-w-6xl w-full mx-auto py-14 ">
           <div className="w-full gap-3 flex flex-col justify-center items-center">
@@ -602,13 +604,17 @@ export default function Page() {
 
           <section className="flex flex-col md:flex-row w-full min-h-[80vh] gap-8 px-8 py-8">
             {/* Left Main Project */}
-            <div className="flex-1 relative overflow-hidden rounded-xl shadow-lg">
+            <div className="relative flex-1  overflow-hidden rounded-xl border">
+              <ShineBorder
+                borderWidth={1}
+                shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+              />
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeProject.bannerURL}
                   src={activeProject.bannerURL}
                   alt={activeProject.name}
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-full object-contain rounded-xl"
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 50 }}
@@ -616,7 +622,7 @@ export default function Page() {
                 />
               </AnimatePresence>
               <motion.div
-                className="absolute bottom-6 left-6 text-white bg-black/50 p-4 rounded-md"
+                className="absolute bottom-6 left-6 text-white bg-black/50 backdrop-blur-md p-4 rounded-md"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
@@ -631,16 +637,14 @@ export default function Page() {
                 <motion.div
                   key={project.name + index}
                   onClick={() => setActiveIndex(index)}
-                  className={`relative cursor-pointer rounded-lg overflow-hidden border-2 hover:scale-95 duration-200 transition-all active:scale-90 ${
-                    index === activeIndex
-                      ? "border-primary"
-                      : "border-transparent"
+                  className={`relative cursor-pointer rounded-lg overflow-hidden border hover:scale-95 duration-200 transition-all active:scale-90 ${
+                    index === activeIndex ? "border-primary" : "border"
                   }`}
                 >
                   <img
                     src={project.bannerURL}
                     alt={project.name}
-                    className="w-full h-32 object-cover"
+                    className="w-full h-32 object-contain"
                   />
                 </motion.div>
               ))}
@@ -648,6 +652,7 @@ export default function Page() {
           </section>
         </div>
       </div>
+      {/* OUR BLOGS */}
       <div className="w-full min-h-50 pb-8">
         <div className="max-w-6xl w-full mx-auto  space-y-10">
           <div className="rounded-md shadow w-max  flex gap-2 overflow-hidden">
