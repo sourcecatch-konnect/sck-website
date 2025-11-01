@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${openSans.variable} ${passionOne.variable}   antialiased`}
+        className={`${openSans.variable} ${passionOne.variable} !overflow-x-hidden  antialiased`}
       >
         <Header />
         {children}

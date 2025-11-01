@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import { div } from "motion/react-client";
 import {
@@ -81,9 +81,31 @@ const Hero = () => {
 };
 const CenterImage = () => {
   const { scrollY } = useScroll(); //We used motions built in hook to calculate y axis scroll pixels
+  const [clipValues, setClipValues] = useState({ start: 25, end: 75 });
 
-  const clip1 = useTransform(scrollY, [0, SECTION_HEIGHT], [25, 0]);
-  const clip2 = useTransform(scrollY, [0, SECTION_HEIGHT], [75, 100]);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setClipValues({ start: 15, end: 85 }); // more open on mobile
+      } else {
+        setClipValues({ start: 25, end: 75 });
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const clip1 = useTransform(
+    scrollY,
+    [0, SECTION_HEIGHT],
+    [clipValues.start, 0]
+  );
+  const clip2 = useTransform(
+    scrollY,
+    [0, SECTION_HEIGHT],
+    [clipValues.end, 100]
+  );
 
   const clipPath = useMotionTemplate`polygon(  ${clip1}% ${clip1}%,   ${clip2}% ${clip1}%,  ${clip2}% ${clip2}%, ${clip1}% ${clip2}%  )`;
 
@@ -100,7 +122,7 @@ const CenterImage = () => {
 
   return (
     <motion.div
-      className="sticky flex items-center justify-center bg-zinc-900  top-0 h-screen w-full "
+      className="sticky flex items-center justify-center bg-zinc-900  top-0 h-[70vh] md:h-screen w-full "
       style={{
         opacity,
         backgroundSize,
@@ -199,7 +221,7 @@ const DBNLondon = ({ className, alt, src, start, end }) => {
       alt={alt}
       className={clsx(
         className,
-        "  bg-black rounded-2xl overflow-hidden p-5 flex gap-5 h-50 z-20 relative"
+        "  bg-black mt-5 rounded-2xl overflow-hidden p-5 flex gap-5 h-50 md:h-50 z-20 relative"
       )}
     >
       <BackgroundRippleEffect />
@@ -218,8 +240,8 @@ const DBNLondon = ({ className, alt, src, start, end }) => {
           <br />
           we took event marketing to the next level. 
         </span>
-        <span className="open-condensed-bold text-5xl">DBN</span>
-        <span className="open-condensed text-8xl">LONDON</span>
+        <span className="open-condensed-bold text-3xl md:text-5xl">DBN</span>
+        <span className="open-condensed text-6xl md:text-8xl">LONDON</span>
       </div>
     </div>
   );
@@ -319,8 +341,8 @@ const RestOfComp = () => {
         </motion.div>
       </div>
       {/* APNA FOOD SECTION */}
-      <div className="max-w-6xl mx-auto w-full my-25 flex gap-3">
-        <div className="w-1/2 ">
+      <div className="max-w-6xl mx-auto w-full my-25 flex md:flex-row flex-col gap-3">
+        <div className="w-full md:w-1/2 ">
           <h2 className="flex flex-col ">
             <TextAnimate
               animation="blurInUp"
@@ -349,7 +371,7 @@ const RestOfComp = () => {
             <ArrowUpRight className="text-white size-6" />
           </div>
         </div>
-        <div className="w-1/2 relative border flex items-center justify-center overflow-hidden rounded-2xl ">
+        <div className="w-full md:w-1/2 relative border flex items-center justify-center overflow-hidden rounded-2xl ">
           <Image
             src="/apna-food-img.webp"
             alt="Apna Food"
@@ -394,22 +416,26 @@ const RestOfComp = () => {
       </div>
 
       {/* Event Booking */}
+      <div className="w-full my-20 px-3">
+        <div className="w-full max-w-6xl mx-auto flex flex-col gap-6">
+          {/* GRID SECTION */}
+          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-3">
+            {/* Orange Title Card */}
+            <div className="col-span-1 md:col-span-2 relative overflow-hidden rounded-md px-6 py-6 bg-[#EC7231] flex flex-col justify-center items-start">
+              <div className="absolute left-0 top-0 w-6 md:w-8 h-full bg-black"></div>
+              <div className="w-4 h-4 md:w-5 md:h-5 bg-white rounded-full top-2 left-1.5 absolute"></div>
+              <div className="w-4 h-4 md:w-5 md:h-5 bg-white rounded-full bottom-2 left-1.5 absolute"></div>
 
-      <div className="w-full my-20">
-        <div className="w-full max-w-6xl mx-auto flex flex-col gap-3">
-          <div className=" p-2 w-full grid grid-cols-3   gap-3">
-            <div className=" col-span-2  overflow-hidden relative h-45 px-12 py-3 rounded-md  flex flex-col  bg-[#EC7231]">
-              <div className="absolute left-0 top-0 w-8 h-full bg-black"></div>
-              <div className="w-5 h-5 bg-white rounded-full top-1.5 left-1.5 absolute"></div>
-              <div className="w-5 h-5 bg-white rounded-full bottom-1.5 left-1.5 absolute"></div>
-              <span className="font-bold text-white text-xl">A</span>
-              <div className="font-passion text-6xl flex flex-col gap-1 ">
-                <span> EVENT BOOKING</span>{" "}
-                <span className="mt-[-1rem]">PLATFORM</span>
+              <span className="font-bold text-white text-lg md:text-xl">A</span>
+              <div className="font-passion text-4xl md:text-6xl flex flex-col gap-1 leading-tight">
+                <span>EVENT BOOKING</span>
+                <span className="mt-[-0.5rem] md:mt-[-1rem]">PLATFORM</span>
               </div>
             </div>
-            <div className="row-span-2">
-              <div className="border-black relative  border h-[70%] rounded-md p-4  w-full  overflow-hidden ">
+
+            {/* Right Column (Video + Description) */}
+            <div className="row-span-2 flex flex-col md:col-span-1">
+              <div className="border border-black relative rounded-md overflow-hidden w-full h-56 sm:h-64 md:h-[70%]">
                 <video
                   autoPlay
                   loop
@@ -423,14 +449,16 @@ const RestOfComp = () => {
                   />
                 </video>
               </div>
-              <div className="text-sm my-5 text-justify">
-                We developed events.indinite.co.uk as a custom event booking
+              <div className="text-sm md:text-base my-4 md:my-5 text-justify leading-relaxed">
+                We developed <strong>Indinite</strong> as a custom event booking
                 platform with seamless scheduling, secure transactions, and a
                 user-friendly interface, enabling organizers and attendees to
                 manage events efficiently and effortlessly online.
               </div>
             </div>
-            <div className="rounded-md  h-60 col-span-2 w-full p-3 border border-primary">
+
+            {/* Bottom Video */}
+            <div className="rounded-md col-span-1 md:col-span-2 w-full h-48 sm:h-56 md:h-60 p-2 border border-primary">
               <video
                 autoPlay
                 loop
@@ -445,18 +473,20 @@ const RestOfComp = () => {
               </video>
             </div>
           </div>
-          <div className="mt-10 flex flex-col gap-5 text-2xl">
+
+          {/* METRICS SECTION */}
+          <div className="mt-10 flex flex-col gap-4 md:gap-5 text-lg sm:text-xl md:text-2xl">
             <span>
               20K+ GBP in ticket sales processed through our custom event
               booking platform.
             </span>
             <span>
-              <span className="text-primary">5000+</span> bookings managed with
-              automated QR code ticketing and email workflows.
+              <span className="text-primary font-semibold">5000+</span> bookings
+              managed with automated QR code ticketing and email workflows.
             </span>
             <span>
-              <span className="text-primary">99.99%</span> uptime achieved
-              during high-traffic event launches.
+              <span className="text-primary font-semibold">99.99%</span> uptime
+              achieved during high-traffic event launches.
             </span>
           </div>
         </div>
@@ -465,16 +495,20 @@ const RestOfComp = () => {
       {/* The Fabric Nation */}
 
       <div className="my-20 py-20 w-full flex justify-between gap-2">
-        <div className="max-w-6xl relative mx-auto w-full grid grid-cols-2">
-          <div className="sticky top-10  self-start h-fit  w-full   text-[7rem] open-condensed-bold">
-            <div className="border w-[20rem] leading-1 border-black"></div>
+        <div className="max-w-6xl relative mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-10 px-4 md:px-0">
+          {/* LEFT SIDE - Heading */}
+          <div className="sticky md:top-10 self-start h-fit w-full text-[3rem] sm:text-[5rem] md:text-[7rem] leading-tight open-condensed-bold text-center md:text-left">
+            <div className="hidden md:block border w-[10rem] md:w-[20rem] leading-1 border-black mb-3"></div>
             THE <span className="text-primary">FAB</span>RIC <br />
             NATION
           </div>
+
+          {/* RIGHT SIDE - Content */}
           <div className="relative w-full">
-            <div className="flex flex-col gap-4">
-              <div className="flex gap-2 items-end">
-                <p className="text-xl uppercase tracking-widest">
+            <div className="flex flex-col gap-6">
+              {/* Text and Icon */}
+              <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-end">
+                <p className="text-base sm:text-lg md:text-xl uppercase tracking-widest leading-snug">
                   From crafting posts to crafting conversions we handled
                   everything.
                 </p>
@@ -484,6 +518,7 @@ const RestOfComp = () => {
                   viewBox="0 0 35 35"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="hidden sm:block"
                 >
                   <g clipPath="url(#clip0_1279_564)">
                     <path
@@ -514,78 +549,40 @@ const RestOfComp = () => {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
-                    <path
-                      d="M4.375 13.1252C4.375 13.8987 4.68229 14.6406 5.22927 15.1876C5.77625 15.7345 6.51812 16.0418 7.29167 16.0418C8.06521 16.0418 8.80708 15.7345 9.35406 15.1876C9.90104 14.6406 10.2083 13.8987 10.2083 13.1252C10.2083 12.3516 9.90104 11.6097 9.35406 11.0628C8.80708 10.5158 8.06521 10.2085 7.29167 10.2085C6.51812 10.2085 5.77625 10.5158 5.22927 11.0628C4.68229 11.6097 4.375 12.3516 4.375 13.1252Z"
-                      stroke="#E85102"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M24.791 13.1252C24.791 13.8987 25.0983 14.6406 25.6453 15.1876C26.1923 15.7345 26.9341 16.0418 27.7077 16.0418C28.4812 16.0418 29.2231 15.7345 29.7701 15.1876C30.3171 14.6406 30.6243 13.8987 30.6243 13.1252C30.6243 12.3516 30.3171 11.6097 29.7701 11.0628C29.2231 10.5158 28.4812 10.2085 27.7077 10.2085C26.9341 10.2085 26.1923 10.5158 25.6453 11.0628C25.0983 11.6097 24.791 12.3516 24.791 13.1252Z"
-                      stroke="#E85102"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
                   </g>
-                  <defs>
-                    <clipPath id="clip0_1279_564">
-                      <rect width="35" height="35" fill="white" />
-                    </clipPath>
-                  </defs>
                 </svg>
               </div>
 
-              <div className=" flex flex-col gap-4">
+              {/* Stats section */}
+              <div className="flex flex-col gap-4">
                 <svg
                   width="30"
                   height="35"
                   viewBox="0 0 35 35"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="hidden sm:block"
                 >
-                  <g clipPath="url(#clip0_1279_573)">
-                    <path
-                      d="M5.83398 11.6668C5.83398 10.1197 6.44857 8.636 7.54253 7.54204C8.63649 6.44808 10.1202 5.8335 11.6673 5.8335H23.334C24.8811 5.8335 26.3648 6.44808 27.4588 7.54204C28.5527 8.636 29.1673 10.1197 29.1673 11.6668V23.3335C29.1673 24.8806 28.5527 26.3643 27.4588 27.4583C26.3648 28.5522 24.8811 29.1668 23.334 29.1668H11.6673C10.1202 29.1668 8.63649 28.5522 7.54253 27.4583C6.44857 26.3643 5.83398 24.8806 5.83398 23.3335V11.6668Z"
-                      stroke="#E85102"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M13.125 17.5C13.125 18.6603 13.5859 19.7731 14.4064 20.5936C15.2269 21.4141 16.3397 21.875 17.5 21.875C18.6603 21.875 19.7731 21.4141 20.5936 20.5936C21.4141 19.7731 21.875 18.6603 21.875 17.5C21.875 16.3397 21.4141 15.2269 20.5936 14.4064C19.7731 13.5859 18.6603 13.125 17.5 13.125C16.3397 13.125 15.2269 13.5859 14.4064 14.4064C13.5859 15.2269 13.125 16.3397 13.125 17.5Z"
-                      stroke="#E85102"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M24.0625 10.9375V10.9521"
-                      stroke="#E85102"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_1279_573">
-                      <rect width="35" height="35" fill="white" />
-                    </clipPath>
-                  </defs>
+                  <path
+                    d="M13.125 17.5C13.125 18.6603 13.5859 19.7731 14.4064 20.5936C15.2269 21.4141 16.3397 21.875 17.5 21.875C18.6603 21.875 19.7731 21.4141 20.5936 20.5936C21.4141 19.7731 21.875 18.6603 21.875 17.5C21.875 16.3397 21.4141 15.2269 20.5936 14.4064C19.7731 13.5859 18.6603 13.125 17.5 13.125C16.3397 13.125 15.2269 13.5859 14.4064 14.4064C13.5859 15.2269 13.125 16.3397 13.125 17.5Z"
+                    stroke="#E85102"
+                    strokeWidth="2"
+                  />
                 </svg>
-                <p className="text-xl uppercase font-semibold tracking-widest italic">
+                <p className="text-base sm:text-lg md:text-xl uppercase font-semibold tracking-widest italic">
                   We grew The Fabric Nation’s Instagram to over 50K followers
                 </p>
               </div>
 
-              <div className="flex gap-4">
+              {/* Device mockups */}
+              <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-6">
                 <svg
-                  width="318"
-                  height="502"
+                  width="180"
+                  height="300"
                   viewBox="0 0 318 502"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="w-40 sm:w-48 md:w-72"
                 >
                   <rect
                     x="5"
@@ -594,58 +591,18 @@ const RestOfComp = () => {
                     height="496"
                     rx="12"
                     fill="white"
-                  />
-                  <rect
-                    x="5"
-                    y="3"
-                    width="308"
-                    height="496"
-                    rx="12"
                     stroke="black"
                     strokeWidth="6"
                   />
-                  <rect
-                    x="149"
-                    y="11"
-                    width="20"
-                    height="20"
-                    rx="10"
-                    fill="black"
-                  />
-                  <rect
-                    x="140"
-                    y="487"
-                    width="37"
-                    height="4"
-                    rx="2"
-                    fill="#E85102"
-                  />
-                  <rect
-                    width="2"
-                    height="30"
-                    transform="translate(316 65)"
-                    fill="#E85102"
-                  />
-                  <rect
-                    width="2"
-                    height="30"
-                    transform="translate(316 97)"
-                    fill="#E85102"
-                  />
-                  <rect
-                    width="2"
-                    height="30"
-                    transform="translate(0 80)"
-                    fill="#E85102"
-                  />
                 </svg>
-                <div className="flex  flex-col justify-between">
+                <div className="flex flex-col justify-between items-center gap-6">
                   <svg
-                    width="195"
-                    height="251"
+                    width="120"
+                    height="160"
                     viewBox="0 0 195 251"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    className="w-28 sm:w-32 md:w-48"
                   >
                     <rect
                       x="4.22656"
@@ -654,180 +611,29 @@ const RestOfComp = () => {
                       height="245"
                       rx="12"
                       fill="white"
-                    />
-                    <rect
-                      x="4.22656"
-                      y="3"
-                      width="186.547"
-                      height="245"
-                      rx="12"
                       stroke="black"
                       strokeWidth="6"
                     />
-                    <rect
-                      x="28"
-                      y="20"
-                      width="29"
-                      height="20"
-                      rx="10"
-                      fill="black"
-                    />
-                    <rect
-                      x="62"
-                      y="20"
-                      width="29"
-                      height="20"
-                      rx="10"
-                      fill="black"
-                    />
-                    <rect
-                      width="1.22642"
-                      height="15"
-                      transform="translate(193.773 32.5)"
-                      fill="black"
-                    />
-                    <rect
-                      width="1.22642"
-                      height="15"
-                      transform="translate(193.773 48.5)"
-                      fill="black"
-                    />
-                    <rect
-                      width="1.22642"
-                      height="15"
-                      transform="translate(0 40)"
-                      fill="black"
-                    />
-                  </svg>
-                  <svg
-                    width="35"
-                    height="35"
-                    viewBox="0 0 35 35"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clipPath="url(#clip0_1279_605)">
-                      <path
-                        d="M13.125 17.4998V11.6665"
-                        stroke="#E85102"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M21.875 17.5002V14.5835"
-                        stroke="#E85102"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M17.5 17.4998V16.0415"
-                        stroke="#E85102"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M4.375 5.8335H30.625"
-                        stroke="#E85102"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.83398 5.8335V20.4168C5.83398 21.1904 6.14128 21.9322 6.68826 22.4792C7.23524 23.0262 7.9771 23.3335 8.75065 23.3335H26.2507C27.0242 23.3335 27.7661 23.0262 28.313 22.4792C28.86 21.9322 29.1673 21.1904 29.1673 20.4168V5.8335"
-                        stroke="#E85102"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M17.5 23.3335V29.1668"
-                        stroke="#E85102"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M13.125 29.1665H21.875"
-                        stroke="#E85102"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_1279_605">
-                        <rect width="35" height="35" fill="white" />
-                      </clipPath>
-                    </defs>
                   </svg>
                 </div>
               </div>
 
-              <div className="flex flex-col gap-8 my-6">
-                <div className="uppercase text-xl font-semibold tracking-widest">
+              {/* Description */}
+              <div className="flex flex-col gap-6 my-6 text-base sm:text-lg md:text-xl font-semibold tracking-widest uppercase">
+                <div>
                   managed their social media presence, and ran Meta campaigns
-                  with a 5.5X ROAS. 
+                  with a 5.5X ROAS.
                 </div>
-                <div className="uppercase text-xl font-semibold tracking-widest">
-                  we built their e-commerce website
-                </div>
+                <div>we built their e-commerce website</div>
               </div>
+
+              {/* Image */}
               <div className="flex flex-col gap-3">
-                <p className="uppercase tracking-widest">
-                  managed their social media presence, and ran Meta campaigns
-                  with a 5.5X ROAS. 
-                </p>
-                <p className="uppercase tracking-widest">
-                  we built their e-commerce website{" "}
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 ">
-                <div className="flex justify-end w-full">
-                  <svg
-                    width="35"
-                    height="35"
-                    viewBox="0 0 35 35"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g clipPath="url(#clip0_1279_599)">
-                      <path
-                        d="M4.375 10.2082C4.375 9.43462 4.68229 8.69276 5.22927 8.14578C5.77625 7.59879 6.51812 7.2915 7.29167 7.2915H27.7083C28.4819 7.2915 29.2237 7.59879 29.7707 8.14578C30.3177 8.69276 30.625 9.43462 30.625 10.2082V24.7915C30.625 25.5651 30.3177 26.3069 29.7707 26.8539C29.2237 27.4009 28.4819 27.7082 27.7083 27.7082H7.29167C6.51812 27.7082 5.77625 27.4009 5.22927 26.8539C4.68229 26.3069 4.375 25.5651 4.375 24.7915V10.2082Z"
-                        stroke="#E85102"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M8.75 11.6665H8.76458"
-                        stroke="#E85102"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M13.125 11.6665H13.1396"
-                        stroke="#E85102"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_1279_599">
-                        <rect width="35" height="35" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                </div>
-                <div className="relative border w-full h-80 border-primary rounded-md overflow-hidden">
+                <div className="relative border w-full h-60 sm:h-80 border-primary rounded-md overflow-hidden">
                   <Image fill alt="tfn image" src="/tfn-img.png" />
                 </div>
                 <div>
-                  <Button className={"pointer-events-none"}>
+                  <Button className="pointer-events-none w-full sm:w-auto">
                     Handled Thousands Of Orders
                   </Button>
                 </div>
@@ -835,12 +641,11 @@ const RestOfComp = () => {
             </div>
           </div>
         </div>
-        <div></div>
       </div>
 
       {/* SHAMALI POLYMATS */}
 
-      <div className=" pt-5 w-full flex hide-scrollbar ">
+      <div className="hidden md:flex pt-5 w-full ">
         <HorizontalScroll />
       </div>
     </>

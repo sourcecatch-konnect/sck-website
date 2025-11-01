@@ -16,11 +16,7 @@ import { IconMenuDeep, IconPhone } from "@tabler/icons-react";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
-import { WavyBackground } from "@/components/ui/wavy-background";
-import { Vortex } from "@/components/ui/vortex";
-import { BackgroundBeams } from "@/components/ui/background-beams";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 export default function Header() {
   const [show, setShow] = useState(true);
@@ -30,7 +26,7 @@ export default function Header() {
   const isHome = pathname === "/";
 
   useEffect(() => {
-    // if (!isHome) return;
+    // if (pathname === "/our-projects") return;
 
     const handleScroll = () => {
       const currentY = window.scrollY;
@@ -42,11 +38,11 @@ export default function Header() {
       }
 
       // Change text color after 1st section (~window height)
-      if (currentY > window.innerHeight * 0.8) {
-        setDarkText(true);
-      } else {
-        setDarkText(false);
-      }
+      // if (currentY > window.innerHeight * 0.8) {
+      //   setDarkText(true);
+      // } else {
+      //   setDarkText(false);
+      // }
 
       setLastScrollY(currentY);
     };
@@ -87,6 +83,14 @@ export default function Header() {
       url: "/contact-us",
     },
   ];
+
+  useEffect(() => {
+    if (pathname === "/our-projects") {
+      setDarkText(true);
+    } else {
+      setDarkText(false);
+    }
+  }, [pathname]);
 
   return (
     <motion.header
@@ -133,7 +137,7 @@ export default function Header() {
           darkText ? "bg-white/60 " : "bg-white/10 text-black"
         } justify-between items-center py-2 px-6 rounded-2xl transition-all duration-500`}
       >
-        <Logo />
+        <Logo darkText={darkText} />
         <Sheet>
           <SheetTrigger>
             <IconMenuDeep
