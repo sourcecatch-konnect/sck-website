@@ -126,68 +126,69 @@ export default function Page() {
   };
   return (
     <>
-      <div className="h-screen w-full   mx-auto bg-black">
-        <div className="relative flex  w-full mx-auto gap-4  h-full">
-          <div className="relative w-full  flex flex-col gap-5 items-center justify-center h-full ">
-            {/* <div className="absolute top-0 left-0 w-40 h-full bg-gradient-to-r from-black via-black/70 to-transparent z-10 pointer-events-none"></div> */}
-            <div className="absolute bottom-0 left-0 h-40 w-full bg-gradient-to-t from-black via-black/70 to-transparent z-10 pointer-events-none"></div>
+      <div className="relative h-screen w-full bg-black overflow-hidden">
+        {/* Background video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover"
+        >
+          <source
+            src="https://ik.imagekit.io/qfj6zsfnqn/Marketing.mp4?updatedAt=1761294920106"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
 
-            {/* <div className="absolute top-0 right-[-7rem] w-32 h-full bg-gradient-to-l from-black/70 via-black z-10 pointer-events-none"></div> */}
-            <video
-              autoPlay
-              loop
-              muted
-              className="absolute top-0 left-0 w-full h-full object-cover"
+        {/* Gradient overlays */}
+        <div className="absolute inset-0 bg-black/50 md:bg-black/60"></div>
+        <div className="absolute bottom-0 left-0 h-40 w-full bg-gradient-to-t from-black via-black/70 to-transparent pointer-events-none"></div>
+
+        {/* Hero content */}
+        <div className="relative z-20 flex flex-col justify-center items-center h-full px-6 text-center gap-6">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl text-white font-semibold leading-tight">
+            Your Brand Deserves to Be <span className="text-primary">Seen</span>
+          </h1>
+
+          <p className="text-white font-light max-w-md sm:max-w-lg md:max-w-xl text-sm sm:text-base">
+            We design and develop stunning websites, dynamic web apps, and
+            smooth mobile experiences that don’t just look good — they perform
+            like magic!
+          </p>
+
+          <div className="flex   gap-3 mt-2">
+            <Button className="w-1/2 md:w-full sm:w-auto">View Plans</Button>
+            <Button
+              className="bg-transparent text-white border-white w-1/2 md:w-full sm:w-auto"
+              variant="outline"
             >
-              <source
-                src="https://ik.imagekit.io/qfj6zsfnqn/Marketing.mp4?updatedAt=1761294920106"
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
-            <div className="reltive z-20 flex flex-col justify-center items-center gap-6">
-              <h1 className=" text-6xl text-white font-semibold">
-                Your Brand Deserves to Be{" "}
-                <span className="text-primary">Seen</span>
-              </h1>
-              <p className="text-white font-light max-w-100 text-center">
-                We design and develop stunning websites, dynamic web apps, and
-                smooth mobile experiences that don’t just look good they perform
-                like magic!
-              </p>
-              <div className="flex gap-3">
-                <Button>View Plans</Button>
-                <Button
-                  className={"bg-transparent text-white"}
-                  variant={"outline"}
-                >
-                  Meet Now
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          <div className="absolute bottom-2 w-full z-30">
-            <Marquee pauseOnHover className={"[--duration:20s"}>
-              {clientLogo.map((item, index) => {
-                return (
-                  <Image
-                    key={index}
-                    src={item.url}
-                    alt="client logo"
-                    width={150}
-                    height={50}
-                    className="white-logo"
-                  />
-                );
-              })}
-            </Marquee>
+              Meet Now
+            </Button>
           </div>
         </div>
+
+        {/* Client logos */}
+        <div className="absolute bottom-3 w-full z-30">
+          <Marquee pauseOnHover className="[--duration:20s]">
+            {clientLogo.map((item, index) => (
+              <Image
+                key={index}
+                src={item.url}
+                alt="client logo"
+                width={120}
+                height={40}
+                className="white-logo mx-4 opacity-80 hover:opacity-100 transition"
+              />
+            ))}
+          </Marquee>
+        </div>
       </div>
+
       <div className="min-h-screen w-full py-13 bg-black">
         <div className="max-w-6xl mx-auto w-full p-4 pt-7">
-          <h2 className="font-extrabold text-white uppercase text-4xl text-center">
+          <h2 className="font-extrabold text-white uppercase text-3xl text-balance md:text-4xl text-center">
             How We Help You Grow 😏
           </h2>
 
@@ -241,8 +242,10 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">1</div>
-                  <div className="w-[75%] font-bold text-5xl">
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    1
+                  </div>
+                  <div className="w-[75%] font-bold text-xl md:text-5xl">
                     PERFORMANCE MARKETING
                   </div>
                   <div>
@@ -360,8 +363,10 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">2</div>
-                  <div className="w-[75%] font-bold text-5xl">
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    2
+                  </div>
+                  <div className="w-[75%] font-bold text-xl md:text-5xl">
                     EMAIL MARKETING
                   </div>
                   <div>
@@ -475,8 +480,10 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">3</div>
-                  <div className="w-[75%] font-bold text-5xl">
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    3
+                  </div>
+                  <div className="w-[75%] font-bold text-xl md:text-5xl">
                     SOCIAL MEDIA MARKETING
                   </div>
                   <div>
@@ -591,8 +598,10 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">4</div>
-                  <div className="w-[75%] font-bold text-5xl">
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    4
+                  </div>
+                  <div className="w-[75%] font-bold text-xl md:text-5xl">
                     SEARCH ENGINE OPTIMISATION
                   </div>
                   <div>
@@ -708,8 +717,10 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">5</div>
-                  <div className="w-[75%] font-bold text-5xl">
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    5
+                  </div>
+                  <div className="w-[75%] font-bold text-xl md:text-5xl">
                     LEAD GENERATION
                   </div>
                   <div>
@@ -824,8 +835,10 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">5</div>
-                  <div className="w-[75%] font-bold text-5xl">
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    5
+                  </div>
+                  <div className="w-[75%] font-bold text-xl  md:text-5xl">
                     INFLUENCER MARKETING
                   </div>
                   <div>
@@ -933,12 +946,12 @@ export default function Page() {
       </div>
       <section className="  py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
-          <div className="relative lg:py-14 lg:px-20 p-10 rounded-2xl bg-black  border flex items-center justify-between flex-col lg:flex-row">
+          <div className="relative  lg:py-14 lg:px-20 p-10 rounded-2xl bg-black  border flex items-center justify-between flex-col lg:flex-row">
             <div className="block text-center mb-5 lg:text-left lg:mb-0">
-              <h2 className="font-manrope text-4xl text-white font-semibold mb-5 lg:mb-2">
+              <h2 className="font-manrope text-3xl md:text-4xl text-white font-semibold mb-5 lg:mb-2">
                 Connect with us
               </h2>
-              <p className="text-xl text-neutral-300">
+              <p className="text-base text-balance md:text-xl text-neutral-300">
                 Contact us with any query or any idea.
               </p>
             </div>

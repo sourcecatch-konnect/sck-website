@@ -26,8 +26,8 @@ export default function Footer() {
           ))}
         </Marquee>
       </div>
-      <div className="p-15  bg-black ">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 ">
+      <div className="p-5 md:p-15  bg-black ">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 ">
           <div className="flex flex-col gap-6 w-1/2">
             <span className="font-bold text-md text-white">Design</span>
             <div>
@@ -84,8 +84,8 @@ export default function Footer() {
             <IconBrandPinterest />
           </div>
           <div className="flex gap-1 items-center text-white font-light">
-            <IconCopyright /> Copyright 2025 | All Rights Reserved By
-            SourceCatch Konnect
+            <IconCopyright />
+            Copyright 2025 | All Rights Reserved By SourceCatch Konnect
           </div>
 
           <Button variant={"outline"} className={"w-max mt-3 rounded-xl"}>
@@ -94,9 +94,9 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="bg-black px-15">
+      <div className="bg-black px-5 md:px-15">
         <div className=" text-left overflow-hidden">
-          <span className="flex gap-3 md:pl-4 justify-start text-white text-6xl items-center font-light">
+          <span className="flex gap-3 pl-4 justify-start text-white text-6xl items-center font-light">
             LETS <IconSquareChevronRightFilled className="size-12" />
           </span>
           <div className="h-max  flex items-center justify-center">

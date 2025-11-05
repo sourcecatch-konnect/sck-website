@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
       >
         <Header />
         {children}
-        <SmoothCursor />
+        {/* <SmoothCursor /> */}
         <Footer />
       </body>
     </html>

@@ -42,7 +42,7 @@ const Hero = () => {
   return (
     <div
       className="relative w-full h-full"
-      // style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)` }}
+      style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)` }}
     >
       <CenterImage />
       <ParallaxImages />
@@ -122,7 +122,7 @@ const CenterImage = () => {
 
   return (
     <motion.div
-      className="sticky flex items-center justify-center bg-zinc-900  top-0 h-[70vh] md:h-screen w-full "
+      className="sticky flex items-center justify-center bg-zinc-900  top-30 md:top-0 h-[30vh] md:h-screen w-full "
       style={{
         opacity,
         backgroundSize,
@@ -576,25 +576,22 @@ const RestOfComp = () => {
 
               {/* Device mockups */}
               <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-6">
-                <svg
-                  width="180"
-                  height="300"
-                  viewBox="0 0 318 502"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-40 sm:w-48 md:w-72"
-                >
-                  <rect
-                    x="5"
-                    y="3"
-                    width="308"
-                    height="496"
-                    rx="12"
-                    fill="white"
-                    stroke="black"
-                    strokeWidth="6"
-                  />
-                </svg>
+                <div className="h-130 relative border-3 w-70 border-black rounded-2xl overflow-hidden">
+                  <video
+                    className="w-full h-full absolute object-cover "
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  >
+                    <source
+                      src="https://ik.imagekit.io/qfj6zsfnqn/tfn-video.mp4?updatedAt=1762318945267"
+                      type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+
                 <div className="flex flex-col justify-between items-center gap-6">
                   <svg
                     width="120"

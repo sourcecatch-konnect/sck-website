@@ -62,31 +62,46 @@ export default function Page() {
   ];
   return (
     <>
-      <div className="h-screen w-full  mx-auto bg-black">
-        <div className="relative flex  w-full mx-auto gap-4  h-full">
-          <div className="relative w-1/2 ml-20 flex flex-col gap-5 justify-center h-full ">
-            {/* <div className="absolute top-0 right-[-7rem] w-32 h-full bg-gradient-to-l from-black/70 via-black z-10 pointer-events-none"></div> */}
-
-            <h1 className=" text-6xl text-white font-semibold">
+      <div className="h-screen w-full mx-auto bg-black">
+        <div className="relative flex flex-col md:flex-row w-full mx-auto gap-4 h-full">
+          {/* Video background (mobile only) */}
+          <div className="absolute inset-0 md:hidden">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source
+                src="https://ik.imagekit.io/qfj6zsfnqn/sck-design.mp4?updatedAt=1760522508692"
+                type="video/mp4"
+              />
+            </video>
+            {/* gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+          </div>
+          {/* Left content */}
+          <div className="relative w-full md:w-1/2 md:ml-20 flex flex-col gap-5 justify-center h-full  md:h-full px-6 md:px-0 text-center md:text-left">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl text-white font-semibold">
               Design That Speaks Before You Do
             </h1>
-            <p className="text-white font-light">
+            <p className="text-white font-light text-sm sm:text-base">
               We turn your brand’s ideas into visuals that connect — designs
               that look good, feel right, and stay remembered.
             </p>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
               <Button>🎨 See Our Work</Button>
-              <Button
-                className={"bg-transparent text-white"}
-                variant={"outline"}
-              >
+              <Button className="bg-transparent text-white" variant="outline">
                 ✉️ Let&apos;s Konnect Now
               </Button>
             </div>
           </div>
-          <div className="relative w-1/2 h-full  overflow-hidden">
-            <div className="absolute top-0 left-0 w-40 h-full bg-gradient-to-r from-black via-black/70 to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 h-40 w-full bg-gradient-to-t from-black via-black/70 to-transparent z-10 pointer-events-none"></div>
+
+          {/* Right video */}
+          <div className="relative hidden md:block w-full md:w-1/2 h-[40vh] md:h-full overflow-hidden">
+            <div className="absolute top-0 left-0 w-40 h-full bg-gradient-to-r from-black via-black/70 to-transparent z-10 pointer-events-none hidden md:block"></div>
+            <div className="absolute bottom-0 left-0 h-40 w-full bg-gradient-to-t from-black via-black/70 to-transparent z-10 pointer-events-none hidden md:block"></div>
             <video
               autoPlay
               loop
@@ -100,30 +115,32 @@ export default function Page() {
               />
             </video>
           </div>
+
+          {/* Marquee */}
           <div className="absolute bottom-2 w-full z-30">
-            <Marquee pauseOnHover className={"[--duration:20s"}>
-              {clientLogo.map((item, index) => {
-                return (
-                  <Image
-                    key={index}
-                    src={item.url}
-                    alt="client logo"
-                    width={150}
-                    height={50}
-                    className="white-logo"
-                  />
-                );
-              })}
+            <Marquee pauseOnHover className="[--duration:20s]">
+              {clientLogo.map((item, index) => (
+                <Image
+                  key={index}
+                  src={item.url}
+                  alt="client logo"
+                  width={120}
+                  height={40}
+                  className="white-logo mx-3"
+                />
+              ))}
             </Marquee>
           </div>
         </div>
       </div>
+
       <div className="min-h-screen w-full">
-        <div className="max-w-6xl mx-auto w-full p-4 pt-7 ">
-          <div className="w-full flex flex-col items-center gap-3">
+        <div className="max-w-6xl mx-auto w-full p-4 pt-7">
+          {/* Header Section */}
+          <div className="w-full flex flex-col items-center gap-3 text-center">
             <div
               className={cn(
-                "group rounded-full border  text-base text-white transition-all ease-in hover:cursor-pointer  border-white/5 bg-neutral-200 hover:bg-neutral-300"
+                "group rounded-full border text-base text-white transition-all ease-in hover:cursor-pointer border-white/5 bg-neutral-200 hover:bg-neutral-300"
               )}
             >
               <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
@@ -131,23 +148,29 @@ export default function Page() {
                 <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
               </AnimatedShinyText>
             </div>
-            <h2 className="font-extrabold text-[#292929] uppercase text-4xl text-center">
+
+            <h2 className="font-extrabold text-[#292929] uppercase text-2xl sm:text-3xl md:text-4xl text-center leading-tight">
               Where Ideas Meet Aesthetics
             </h2>
-            <span className="text-center max-w-150 text-sm">
+
+            <span className="text-center max-w-[40rem] text-sm sm:text-base text-[#555] px-3">
               Every brand has a voice. We just give it form — through color,
               space, and story. Our designs are crafted to feel alive, to move
               your audience before they even read a word.
             </span>
           </div>
 
-          <div ref={ref} className="grid grid-cols-2 gap-3 my-15">
+          {/* Grid Section */}
+          <div
+            ref={ref}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 my-15 mt-10"
+          >
             {/* Left block */}
-            <div className="w-full pb-20 flex gap-6 p-4 items-center">
-              <span className="mt-10 font-extrabold text-[#292929] uppercase text-3xl">
-                Clarity Over <br /> Chaos
+            <div className="w-full flex flex-col md:flex-row gap-6 p-4 items-center md:pb-20">
+              <span className="font-extrabold text-[#292929] uppercase text-2xl sm:text-3xl text-center md:text-left mt-4 md:mt-10">
+                Clarity Over <br className="hidden md:block" /> Chaos
               </span>
-              <div className="w-50 h-80 relative">
+              <div className="w-full sm:w-64 h-64 sm:h-80 relative">
                 <Image
                   className="border object-center rounded-sm"
                   src={"/design-1-img.png"}
@@ -158,8 +181,8 @@ export default function Page() {
             </div>
 
             {/* Right block */}
-            <div className="w-full pt-20 flex gap-6 p-4 items-center">
-              <div className="w-120 h-80 relative">
+            <div className="w-full flex flex-col md:flex-row gap-6 p-4 items-center md:pt-20">
+              <div className="w-full sm:w-96 h-64 sm:h-80 relative order-1 md:order-none">
                 <Image
                   className="border object-cover object-center rounded-sm"
                   src={"/design-2-img.png"}
@@ -167,21 +190,23 @@ export default function Page() {
                   fill
                 />
               </div>
-              <div className="h-full w-full flex flex-col gap-3 justify-center">
-                <h2 className="text-xl font-semibold">
-                  Design isn’t decoration — <br />
+              <div className="h-full w-full flex flex-col gap-3 justify-center text-center md:text-left mt-4 md:mt-0">
+                <h2 className="text-lg sm:text-xl font-semibold">
+                  Design isn’t decoration — <br className="hidden md:block" />
                   it’s direction.
                 </h2>
-                <span className="text-base font-light">
-                  We cut through the noise with visuals that *guide* attention,
-                  not distract it. Every color, shape, and type choice has a
-                  purpose — to make your brand story impossible to ignore.
+                <span className="text-sm sm:text-base font-light text-[#444]">
+                  We cut through the noise with visuals that <i>guide</i>{" "}
+                  attention, not distract it. Every color, shape, and type
+                  choice has a purpose — to make your brand story impossible to
+                  ignore.
                 </span>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div className="flex flex-col w-full py-13">
         {/* Logo And Branding */}
         <HoverAccordion
@@ -192,8 +217,10 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">1</div>
-                  <div className="w-[75%] font-bold text-5xl">
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    1
+                  </div>
+                  <div className="w-[75%] font-bold text-xl md:text-5xl">
                     LOGO AND BRANDING
                   </div>
                   <div>
@@ -316,8 +343,10 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">2</div>
-                  <div className="w-[75%] font-bold text-5xl">
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    2
+                  </div>
+                  <div className="w-[75%] font-bold text-xl md:text-5xl">
                     GRAPHICS/PRINT DESIGN
                   </div>
                   <div>
@@ -436,8 +465,12 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">3</div>
-                  <div className="w-[75%] font-bold text-5xl">PHOTOGRAPHY</div>
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    3
+                  </div>
+                  <div className="w-[75%] font-bold text-xl md:text-5xl">
+                    PHOTOGRAPHY
+                  </div>
                   <div>
                     <Modal>
                       <ModalTrigger
@@ -553,8 +586,10 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">4</div>
-                  <div className="w-[75%] font-bold text-5xl">
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    4
+                  </div>
+                  <div className="w-[75%] font-bold text-xl md:text-5xl">
                     VIDEO PRODUCTION
                   </div>
                   <div>
@@ -672,8 +707,10 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">5</div>
-                  <div className="w-[75%] font-bold text-5xl">
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    5
+                  </div>
+                  <div className="w-[75%] font-bold text-xl md:text-5xl">
                     PACKAGING & PRODUCT DESIGN
                   </div>
                   <div>
@@ -785,12 +822,12 @@ export default function Page() {
       </div>
       <section className="  py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
-          <div className="relative lg:py-14 lg:px-20 p-10 rounded-2xl bg-black  border flex items-center justify-between flex-col lg:flex-row">
+          <div className="relative  lg:py-14 lg:px-20 p-10 rounded-2xl bg-black  border flex items-center justify-between flex-col lg:flex-row">
             <div className="block text-center mb-5 lg:text-left lg:mb-0">
-              <h2 className="font-manrope text-4xl text-white font-semibold mb-5 lg:mb-2">
+              <h2 className="font-manrope text-3xl md:text-4xl text-white font-semibold mb-5 lg:mb-2">
                 Connect with us
               </h2>
-              <p className="text-xl text-neutral-300">
+              <p className="text-base text-balance md:text-xl text-neutral-300">
                 Contact us with any query or any idea.
               </p>
             </div>

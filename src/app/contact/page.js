@@ -411,8 +411,8 @@ export default function page() {
 
   return (
     <>
-      <div className=" w-full flex justify-center items-center py-20 mt-10">
-        <div className="relative h-[400px] max-w-6xl w-full rounded-2xl border bg-black overflow-hidden p-20 flex justify-center items-center">
+      <div className=" w-full flex justify-center items-center py-20 px-5 md:px-0 mt-10">
+        <div className="relative h-[400px] max-w-6xl w-full rounded-2xl border bg-black overflow-hidden px-3 md:p-20 flex justify-center items-center">
           <span className="absolute top-5 left-5 border px-2 py-1 rounded-md text-white z-10">
             Schedule a Meeting Now
           </span>
@@ -426,17 +426,18 @@ export default function page() {
 
           {/* content */}
           <div className="relative flex flex-col justify-center items-center gap-3 z-10 text-center">
-            <h1 className="text-white text-4xl font-bold">
-              We&apos;ve Crossed Oceans to Get <br /> Closer To You Let&apos;s
+            <h1 className="text-white text-2xl  md:text-4xl font-bold">
+              We&apos;ve Crossed Oceans to Get{" "}
+              <br className="hidden md:block" /> Closer To You Let&apos;s
               Konnect!
             </h1>
             <Button className="w-max">Send Message</Button>
           </div>
         </div>
       </div>
-      <div className=" h-100 bg-accent flex gap-3 w-full  py-20  bg-[url(/map.svg)]">
-        <div className="max-w-6xl w-full mx-auto flex ">
-          <div className="w-1/2  flex items-center p-4">
+      <div className=" min-h-100 bg-accent flex gap-3 w-full  py-20  bg-[url(/map.svg)]">
+        <div className="max-w-6xl w-full mx-auto flex flex-col md:flex-row">
+          <div className="w-full md:w-1/2  flex items-center p-4">
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-1">
                 <span className="font-semibold text-xl">ADDRESS</span>
@@ -459,7 +460,7 @@ export default function page() {
               </div>
             </div>
           </div>
-          <div className="w-1/2  h-10 p-4">
+          <div className="w-full md:w-1/2  h-10 p-4">
             <div className="flex flex-col gap-3">
               <div className="flex gap-2">
                 <Input

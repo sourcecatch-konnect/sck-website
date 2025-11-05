@@ -80,7 +80,7 @@ export default function Header() {
     },
     {
       name: "Contact Us",
-      url: "/contact-us",
+      url: "/contact",
     },
   ];
 

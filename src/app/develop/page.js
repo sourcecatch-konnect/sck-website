@@ -50,6 +50,15 @@ export default function Page() {
     "https://images.unsplash.com/photo-1546484475-7f7bd55792da?q=80&w=2581&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   ];
 
+  const devImages = [
+    "/services/dev/DBN.webp",
+    "/services/dev/hmv-school.webp",
+    "/services/dev/Indinite.webp",
+    "/services/dev/perfume-by-js.webp",
+    "/services/dev/sk-translines.webp",
+    "/services/dev/zero-energy.webp",
+  ];
+
   const expertiseArr = [
     "Full-Stack Product Engineering",
     "Web & App Development",
@@ -121,145 +130,137 @@ export default function Page() {
   ];
   return (
     <>
-      <div className="h-screen w-full   mx-auto bg-black">
-        <div className="relative flex  w-full mx-auto gap-4  h-full">
-          <div className="relative w-full  flex flex-col gap-5 items-center justify-center h-full ">
-            {/* <div className="absolute top-0 right-[-7rem] w-32 h-full bg-gradient-to-l from-black/70 via-black z-10 pointer-events-none"></div> */}
+      <div className="h-screen w-full mx-auto bg-black relative overflow-hidden">
+        {/* Video background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source
+            src="https://ik.imagekit.io/qfj6zsfnqn/develop.mp4?updatedAt=1761297445677"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
 
-            <video
-              autoPlay
-              loop
-              muted
-              className="absolute  top-0 left-0 w-full h-full object-cover"
-            >
-              <source
-                src="https://ik.imagekit.io/qfj6zsfnqn/develop.mp4?updatedAt=1761297445677"
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
-            <div className="absolute top-0 left-0 w-full h-full bg-black/60"></div>
-            <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        {/* overlays */}
+        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black via-transparent to-transparent"></div>
 
-            <div className="z-50 w-full h-full flex flex-col  gap-3 items-center justify-center ">
-              <h1 className=" text-6xl text-white font-semibold">
-                Your <span className="text-primary">Ideas</span> Our{" "}
-                <span className="text-primary">Code</span>
-              </h1>
-              <p className="text-white font-light max-w-140 text-center">
-                We design and develop stunning websites, dynamic web apps, and
-                smooth mobile experiences that don’t just look good they perform
-                like magic!
-              </p>
-              <div className="flex gap-3">
-                <Button>View Plans</Button>
-                <Button
-                  className={"bg-transparent text-white"}
-                  variant={"outline"}
-                >
-                  Meet Now
-                </Button>
-              </div>
-            </div>
-          </div>
+        <div className="relative flex flex-col items-center justify-center w-full h-full gap-3 px-4 sm:px-8 text-center z-20">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl text-white font-semibold leading-tight">
+            Your <span className="text-primary">Ideas</span> Our{" "}
+            <span className="text-primary">Code</span>
+          </h1>
+          <p className="text-white font-light max-w-[40rem] text-sm sm:text-base mt-2">
+            We design and develop stunning websites, dynamic web apps, and
+            smooth mobile experiences that don’t just look good — they perform
+            like magic!
+          </p>
 
-          <div className="absolute bottom-0 w-full z-30 ">
-            <Marquee pauseOnHover className={"[--duration:20s"}>
-              {clientLogo.map((item, index) => {
-                return (
-                  <Image
-                    key={index}
-                    src={item.url}
-                    alt="client logo"
-                    width={150}
-                    height={50}
-                    className="white-logo"
-                  />
-                );
-              })}
-            </Marquee>
+          <div className="flex flex-row gap-3 mt-4">
+            <Button>View Plans</Button>
+            <Button className="bg-transparent text-white" variant="outline">
+              Meet Now
+            </Button>
           </div>
         </div>
+
+        {/* Marquee */}
+        <div className="absolute bottom-2 w-full z-30">
+          <Marquee pauseOnHover className="[--duration:20s]">
+            {clientLogo.map((item, index) => (
+              <Image
+                key={index}
+                src={item.url}
+                alt="client logo"
+                width={120}
+                height={40}
+                className="white-logo mx-3"
+              />
+            ))}
+          </Marquee>
+        </div>
       </div>
-      <div className="min-h-screen relative w-full bg-black  py-15">
+
+      <div className="min-h-screen relative w-full bg-black py-15 px-2 md:px-0 overflow-hidden">
         <BackgroundRippleEffect />
-        <div className="max-w-6xl z-10 relative mx-auto   rounded-md shadow-md shadow-neutral-700 border border-neutral-700  w-full  py-7">
-          <h2 className="font-extrabold text-slate-100 uppercase text-4xl text-center">
+
+        <div className="max-w-6xl  relative z-10 mx-auto rounded-md shadow-md shadow-neutral-700 border border-neutral-700 w-full py-7 px-4 sm:px-6">
+          <h2 className="font-extrabold text-slate-100 uppercase text-2xl sm:text-3xl md:text-4xl text-center leading-tight">
             Where Logic Meets Creativity
           </h2>
 
+          {/* marquee */}
           <div className="my-6">
-            <Marquee pauseOnHover className={"[--duration:20s"}>
+            <Marquee pauseOnHover className="[--duration:20s]">
               {expertiseArr.map((item, index) => (
                 <AnimatedShinyText
                   key={index}
-                  className="inline-flex border  border-primary rounded-2xl items-center justify-center px-4 py-1 transition ease-out   hover:duration-300 text-neutral-200"
+                  className="inline-flex border border-primary rounded-2xl items-center justify-center px-3 sm:px-4 py-1 transition ease-out hover:duration-300 text-neutral-200 mx-1 sm:mx-2 text-xs sm:text-sm"
                 >
                   {item}
                 </AnimatedShinyText>
               ))}
             </Marquee>
           </div>
-          <div className="w-full  flex items-center ">
-            <div className="grid grid-cols-3 max-w-4xl w-full  mx-auto gap-30 ">
-              <CardSpotlight className="h-full bg-neutral-900 border-neutral-700 px-3 py-2  rounded-md">
+
+          {/* cards */}
+          <div className="w-full flex items-center justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 max-w-4xl w-full mx-auto">
+              {/* card 1 */}
+              <CardSpotlight className="h-full bg-neutral-900 border-neutral-700 px-3 py-4 rounded-md">
                 <div className="relative z-20">
-                  <div className="relative w-full h-30 rounded-md overflow-hidden flex flex-col gap-3">
-                    <Image
-                      unoptimized
-                      src={"/gif/giphy.gif"}
-                      fill
-                      alt=""
-                      className=""
-                    />
+                  <div className="relative w-full h-40 sm:h-48 rounded-md overflow-hidden">
+                    <Image unoptimized src="/gif/giphy.gif" fill alt="gif" />
                   </div>
-                  <div className="my-5 flex flex-col gap-5">
-                    <span className="text-neutral-300 text-balance uppercase font-bold italic text-sm">
+                  <div className="my-5 flex flex-col gap-4">
+                    <span className="text-neutral-300 uppercase font-bold italic text-xs sm:text-sm">
                       Don’t Be Like This Monkey 🐵
                     </span>
-                    <span className="text-2xl font-semilight text-white">
+                    <span className="text-lg sm:text-xl font-light text-white">
                       We make interfaces that actually listen.
                     </span>
                   </div>
                 </div>
               </CardSpotlight>
-              <CardSpotlight className="h-full bg-neutral-900 border-neutral-700 px-3 py-2 rounded-md">
-                <div className="z-20 relative h-full ">
-                  <div className="relative w-full h-30 rounded-md overflow-hidden">
-                    <Image
-                      unoptimized
-                      src={"/gif/comp.gif"}
-                      fill
-                      alt=""
-                      className=""
-                    />
+
+              {/* card 2 */}
+              <CardSpotlight className="h-full bg-neutral-900 border-neutral-700 px-3 py-4 rounded-md">
+                <div className="relative z-20">
+                  <div className="relative w-full h-40 sm:h-48 rounded-md overflow-hidden">
+                    <Image unoptimized src="/gif/comp.gif" fill alt="gif" />
                   </div>
-                  <div className="my-5 flex flex-col gap-5 justify-between ">
-                    <span className="text-neutral-300  text-balance font-bold italic text-sm uppercase">
+                  <div className="my-5 flex flex-col gap-4">
+                    <span className="text-neutral-300 uppercase font-bold italic text-xs sm:text-sm">
                       Stop Slamming. Start Shipping. 🚀
                     </span>
-                    <h2 className="text-2xl font-semilight text-balance text-white">
+                    <h2 className="text-lg sm:text-xl font-light text-white">
                       Code shouldn’t hurt your feelings.
                     </h2>
                   </div>
                 </div>
               </CardSpotlight>
-              <CardSpotlight className="h-full bg-neutral-900 border-neutral-700 px-3 py-2 rounded-md">
+
+              {/* card 3 */}
+              <CardSpotlight className="h-full bg-neutral-900 border-neutral-700 px-3 py-4 rounded-md">
                 <div className="relative z-20">
-                  <div className="relative w-full h-30 rounded-md overflow-hidden">
+                  <div className="relative w-full h-40 sm:h-48 rounded-md overflow-hidden">
                     <Image
                       unoptimized
-                      src={"/gif/market-gif.gif"}
+                      src="/gif/market-gif.gif"
                       fill
-                      alt=""
-                      className=""
+                      alt="gif"
                     />
                   </div>
-                  <div className="my-5 flex flex-col gap-5">
-                    <span className="text-neutral-300 font-bold italic text-balance text-sm uppercase">
+                  <div className="my-5 flex flex-col gap-4">
+                    <span className="text-neutral-300 uppercase font-bold italic text-xs sm:text-sm">
                       Endless Scrolling Isn’t Engagement 😅
                     </span>
-                    <h2 className="text-2xl text-balance font-semilight text-white">
+                    <h2 className="text-lg sm:text-xl font-light text-white">
                       UX so good, you’ll stop searching.
                     </h2>
                   </div>
@@ -269,6 +270,7 @@ export default function Page() {
           </div>
         </div>
       </div>
+
       <div className="flex flex-col w-full py-13">
         {/* Website Development */}
         <HoverAccordion
@@ -279,8 +281,10 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">1</div>
-                  <div className="w-[75%] uppercase font-bold text-5xl">
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    1
+                  </div>
+                  <div className="w-[75%] uppercase font-bold text-xl md:text-5xl">
                     website development
                   </div>
                   <div>
@@ -299,14 +303,14 @@ export default function Page() {
                       <ModalBody>
                         <ModalContent>
                           <h4 className="text-lg text-balance md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
-                            We make{" "}
+                            We BUILD{" "}
                             <span className="px-1 py-0.5 rounded-md bg-gray-100 dark:bg-neutral-800 dark:border-neutral-700 border border-gray-200">
-                              emails
+                              WEBSITES
                             </span>{" "}
-                            people actually want to open! 📨
+                            PEOPLE ACTUALLY WANT TO STAY ON 🌐
                           </h4>
                           <div className="flex justify-center items-center">
-                            {images.map((image, idx) => (
+                            {devImages.map((image, idx) => (
                               <motion.div
                                 key={"images" + idx}
                                 style={{
@@ -336,31 +340,31 @@ export default function Page() {
                           </div>
                           <div className="flex flex-col py-8 gap-5 ">
                             <h4 className="text-center text-xl">
-                              Why Our Emails Work
+                              WHY OUR WEBSITES WORK
                             </h4>
                             <div className=" flex flex-wrap gap-x-4 gap-y-6 items-start justify-center max-w-sm mx-auto">
                               <div className="flex  items-center justify-center">
                                 <IconTarget className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
                                 <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                                  Personal, Not Pushy
+                                  User-First
                                 </span>
                               </div>
                               <div className="flex items-center justify-center">
                                 <IconChartFunnel className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
                                 <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                                  Smart Timing
+                                  Lightning-Fast
                                 </span>
                               </div>
                               <div className="flex items-center justify-center">
                                 <IconLivePhoto className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
                                 <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                                  Design That Guides
+                                  Brand-Driven
                                 </span>
                               </div>
                               <div className="flex  items-center justify-center">
                                 <IconClipboardText className="mr-1 text-neutral-700 dark:text-neutral-300 h-4 w-4" />
                                 <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                                  Performance First
+                                  Performance-Ready
                                 </span>
                               </div>
                             </div>
@@ -401,8 +405,10 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">2</div>
-                  <div className="w-[75%] uppercase font-bold text-5xl">
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    2
+                  </div>
+                  <div className="w-[75%] uppercase font-bold  text-xl md:text-5xl">
                     WEB APPLICATION
                   </div>
                   <div>
@@ -520,8 +526,10 @@ export default function Page() {
               value: "item-1",
               trigger: (
                 <div className="flex w-full uppercase open-condensed-bold px-4 items-center">
-                  <div className="w-[10%] font-semibold text-2xl">3</div>
-                  <div className="w-[75%] uppercase font-bold text-5xl">
+                  <div className="w-[10%] font-semibold text-base md:text-2xl">
+                    3
+                  </div>
+                  <div className="w-[75%] uppercase font-bold text-xl md:text-5xl">
                     Mobile Application
                   </div>
                   <div>
@@ -632,12 +640,12 @@ export default function Page() {
       </div>
       <section className="  py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
-          <div className="relative lg:py-14 lg:px-20 p-10 rounded-2xl bg-black  border flex items-center justify-between flex-col lg:flex-row">
+          <div className="relative  lg:py-14 lg:px-20 p-10 rounded-2xl bg-black  border flex items-center justify-between flex-col lg:flex-row">
             <div className="block text-center mb-5 lg:text-left lg:mb-0">
-              <h2 className="font-manrope text-4xl text-white font-semibold mb-5 lg:mb-2">
+              <h2 className="font-manrope text-3xl md:text-4xl text-white font-semibold mb-5 lg:mb-2">
                 Connect with us
               </h2>
-              <p className="text-xl text-neutral-300">
+              <p className="text-base text-balance md:text-xl text-neutral-300">
                 Contact us with any query or any idea.
               </p>
             </div>

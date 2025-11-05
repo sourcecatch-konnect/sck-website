@@ -61,7 +61,7 @@ export default function Page() {
         {/* Overlay for better readability (optional) */}
         <div className="absolute inset-0 bg-black/40 z-10"></div>
 
-        <div className="relative max-w-6xl gap-5 h-full w-full mx-auto items-start flex-col justify-center flex z-20">
+        <div className="relative max-w-xs md:max-w-6xl gap-5 h-full w-full mx-auto items-start flex-col justify-center flex z-20">
           <h1 className="text-5xl text-white font-bold">
             About <span className="text-primary">S</span>ourceCatch <br />
             <span className="text-primary">K</span>onnect
@@ -125,15 +125,15 @@ export default function Page() {
 
       {/* Who We ARe Two */}
       <div className="w-full bg-[#f9f9f9] py-18">
-        <div className="max-w-6xl mx-auto w-full h-80 items-center flex ">
-          <div className="w-[70%] flex flex-col   py-3 h-full ">
-            <h2 className=" py-3 font-bold text-xl">
+        <div className="max-w-6xl mx-auto w-full min-h-[20rem] items-center flex flex-col md:flex-row px-6 md:px-0 ">
+          <div className="w-full md:w-[70%] flex flex-col   py-3 h-full ">
+            <h2 className=" py-3 font-bold text-xl text-center md:text-left">
               We don’t just build brands. We build momentum. ⚡
             </h2>
-            <div className="h-50 overflow-hidden flex gap-9 border-t border-b">
-              <div className="w-[40%] h-full  relative py-3">
-                <div className="absolute left-0 top-0 h-full w-25 bg-gradient-to-r from-white z-10 via-white/50 to-transparent"></div>
-                <div className="absolute right-0 top-0 h-full w-25 bg-gradient-to-l from-white z-10 via-white/50 to-transparent"></div>
+            <div className="min-h-50 overflow-hidden flex flex-col md:flex-row gap-2 md:gap-9 border-t border-b">
+              <div className="w-full md:w-[40%] h-full  relative py-3">
+                <div className="absolute hidden md:block left-0 top-0 h-full w-25 bg-gradient-to-r from-white z-10 via-white/50 to-transparent"></div>
+                <div className="absolute hidden md:block right-0 top-0 h-full w-25 bg-gradient-to-l from-white z-10 via-white/50 to-transparent"></div>
                 <Marquee className={"[--duration:20s] "}>
                   {images.map((item, index) => {
                     return (
@@ -152,8 +152,8 @@ export default function Page() {
                   })}
                 </Marquee>
               </div>
-              <div className="w-full h-full py-3">
-                <p className="w-full">
+              <div className="w-full h-full p-3">
+                <p className="w-full text-justify">
                   At SourceCatch, we’re a bunch of creators, coders, and
                   strategists obsessed with making ideas come alive. From
                   crafting high-converting campaigns to developing powerful
@@ -167,9 +167,9 @@ export default function Page() {
             style={{
               boxShadow: "8px 8px 0 0 var(--tw-shadow-color, #3b82f6)",
             }}
-            className="w-[30%] h-full border-2 rounded-2xl shadow-primary shadow-2xl border-primary p-4"
+            className="md:w-[30%] w-full h-full border-2 rounded-2xl shadow-primary shadow-2xl border-primary p-2 md:p-4"
           >
-            <div className="h-full w-full border-dashed p-8  border rounded-2xl">
+            <div className="h-full w-full border-dashed p-4 md:p-8  border rounded-2xl">
               <div className="flex flex-col justify-around h-full">
                 <span className="text-3xl leading-10 uppercase font-bold">
                   07+ Years <br /> of Experience
@@ -195,9 +195,9 @@ export default function Page() {
       </div>
 
       {/* Revenue */}
-      <div className="w-full py-18 bg-[#f9f9f9] ">
-        <div className="max-w-6xl mx-auto w-full flex gap-3">
-          <div className="w-[40%] z-10 ">
+      <div className="w-full hidden md:block md:py-18 bg-[#f9f9f9] ">
+        <div className="max-w-6xl mx-auto w-full flex flex-col-reverse md:flex-row  gap-3 p-6 md:p-0">
+          <div className="w-full md:w-[40%] z-10 ">
             <div
               className="w-full border-2 border-primary rounded-sm p-5  shadow-primary"
               style={{
@@ -207,7 +207,7 @@ export default function Page() {
               <ChartLineInteractive />
             </div>
           </div>
-          <div className="w-[60%] py-13">
+          <div className="w-full md:w-[60%] py-13">
             <div className="  border-t-2 border-b-2 min-h-10 py-8">
               <Marquee className={"[--duration:20s]"}>
                 <span className="uppercase font-bold text-3xl  text-neutral-500 px-5">
@@ -304,15 +304,17 @@ export default function Page() {
       {/*  */}
 
       {/* Founder Intro */}
-      <div className="relative w-full  mb-13">
+      <div className="relative w-full  mb-13 overflow-hidden">
         <div className="absolute h-full w-1/2 bg-black"></div>
         <div className="relative max-w-6xl mx-auto w-full h-100 ">
           <div className="w-1/2"></div>
           <div className="w-1/2"></div>
           <div className="relative max-w-6xl mx-auto w-full h-full py-4 flex ">
-            <div className="w-1/2 flex flex-col gap-2">
-              <span className="text-white text-base">Meet our founder</span>
-              <h2 className="font-semibold text-3xl text-white">
+            <div className="w-1/2 px-2 md:px-0 flex flex-col gap-2">
+              <span className="text-white text-sm md:text-base">
+                Meet our founder
+              </span>
+              <h2 className="font-semibold text-2xl md:text-3xl text-white">
                 MR. PRANAV KOTHARI
               </h2>
               <div className="text-primary flex gap-2">
@@ -321,19 +323,19 @@ export default function Page() {
                 <IconBrandInstagram />
               </div>
             </div>
-            <div className="w-1/2 flex justify-end items-end  z-50">
+            <div className="w-1/2 hidden px-2 md:px-0 md:flex  justify-end items-end  z-50">
               <div className="w-100 flex flex-col gap-5">
-                <p className="text-black">
-                  At SourceCatch Konnect Pvt. Ltd., we build lasting connections
-                  between businesses and innovative, results-driven IT
-                  solutions. Our commitment is to excellence guarantees clients
-                  access to cutting-edge technology, seamless integration, and
-                  unmatched support.
+                <p className="text-black text-md">
+                  At SourceCatch Konnect, We build lasting connections between
+                  businesses and innovative, results-driven IT solutions. Our
+                  commitment is to excellence guarantees clients access to
+                  cutting-edge technology, seamless integration, and unmatched
+                  support.
                 </p>
                 <Button className={"w-max"}>Contact Us</Button>
               </div>
             </div>
-            <div className=" h-full w-70   absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="h-full w-70 absolute top-1/2 left-1/2 md:-translate-x-1/2 -translate-y-1/2 sm:left-1/2  translate-x-[0%] sm:translate-x-[-50%]">
               <Image
                 src="https://ik.imagekit.io/qfj6zsfnqn/pranav-img.webp?updatedAt=1761552006347"
                 alt="pranav img"
@@ -343,14 +345,29 @@ export default function Page() {
             </div>
           </div>
         </div>
+        <div className="absolute bottom-5 left-5 right-5 rounded-2xl backdrop-blur-sm bg-white/60 shadow-lg p-4 flex flex-col justify-center gap-3 md:hidden border border-gray-200">
+          <div className="flex items-start gap-2">
+            <span className="text-3xl text-gray-400 leading-none">“</span>
+            <p className="text-black text-sm leading-relaxed">
+              At <span className="font-semibold">SourceCatch Konnect</span>, we
+              build lasting connections between businesses and innovative,
+              results-driven IT solutions. Our commitment to excellence ensures
+              clients access to cutting-edge technology, seamless integration,
+              and unmatched support.
+            </p>
+            <span className="text-3xl text-gray-400 leading-none self-end">
+              ”
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Client Testimonial */}
       <div className="w-full flex gap-5 my-15">
-        <div className="max-w-6xl mx-auto w-full flex gap-5">
-          <div className="shadow rounded-2xl  w-1/2 relative py-13">
+        <div className="max-w-6xl mx-auto w-full flex flex-col md:flex-row px-3 md:px-0 gap-5">
+          <div className="shadow rounded-2xl w-full   md:w-1/2 relative py-3 md:py-13">
             <div className="w-full justify-center">
-              <h2 className="font-bold text-2xl text-center text-black">
+              <h2 className="font-bold text-xl md:text-2xl text-center text-black">
                 OUR PARTNERS
               </h2>
             </div>
@@ -375,9 +392,9 @@ export default function Page() {
               </Marquee>
             </div>
           </div>
-          <div className="shadow rounded-2xl w-1/2 relative py-13">
+          <div className="shadow rounded-2xl  w-full md:w-1/2 relative py-3 md:py-13">
             <div className="w-full justify-center">
-              <h2 className="font-bold text-2xl text-center text-black">
+              <h2 className="font-bold text-xl md:text-2xl text-center text-black">
                 IN ASSOCIATION WITH
               </h2>
             </div>
@@ -406,11 +423,11 @@ export default function Page() {
 
       <div className="w-full flex h-90  mt-13 bg-gradient-to-b from-orange-500/20 via-white to-orange-500/20">
         <div className="max-w-6xl w-full mx-auto py-20  ">
-          <div className="flex flex-col items-center gap-5">
-            <h2 className="uppercase text-3xl text-balance text-black font-bold text-center">
+          <div className="flex flex-col px-3 md:px-0 items-center gap-5">
+            <h2 className="uppercase text-2xl md:text-3xl text-balance text-black font-bold text-center">
               TAKE YOUR BUSINESS WORKFLOW TO <br /> THE NEXT LEVEL
             </h2>
-            <span className="text-center">
+            <span className="text-center text-balance">
               We don’t just design we create experiences that make your <br />
               brand unforgettable design we create experiences
             </span>
@@ -421,8 +438,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-
-      <div></div>
     </>
   );
 }
