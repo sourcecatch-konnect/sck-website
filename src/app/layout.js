@@ -1,8 +1,11 @@
 import { Open_Sans, Passion_One } from "next/font/google";
 import "./globals.css";
-import Header from "./components/header/Header";
-import Footer from "./components/Footer";
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
+
+import { AnimatePresence, motion } from "motion/react";
+
+import Header from "./(client)/components/header/Header";
+import Footer from "./(client)/components/Footer";
+import PageTransition from "./(client)/components/PageTransition";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -26,7 +29,7 @@ export default function RootLayout({ children }) {
         className={`${openSans.variable} ${passionOne.variable} !overflow-x-hidden  antialiased`}
       >
         <Header />
-        {children}
+        <PageTransition>{children}</PageTransition>
         {/* <SmoothCursor /> */}
         <Footer />
       </body>

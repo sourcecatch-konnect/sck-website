@@ -43,6 +43,7 @@
   --radius-xl: calc(var(--radius) + 4px);
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  --shadow-3xl: 0 0px 100px rgba(0, 0, 0, 0.6);
   @keyframes marquee {
     from {
       transform: translateX(0);
@@ -203,6 +204,9 @@
       background-position: 200%;
     }
   }
+}
+html {
+  scroll-behavior: smooth;
 }
 
 @media (prefers-color-scheme: light) {
@@ -396,4 +400,9 @@ body {
       opacity: 0.4;
     }
   }
+}
+
+.ink {
+  mix-blend-mode: difference !important;
+  color: white !important;
 }

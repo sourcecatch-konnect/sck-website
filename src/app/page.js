@@ -1,10 +1,8 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import React, { useRef, useState } from "react";
-import ClientCarousel from "./components/ClientCarousel";
-import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
-import { Trophy } from "lucide-react";
+
+import React, { useState, useEffect } from "react";
+
+import { motion, AnimatePresence } from "motion/react";
 
 import {
   Accordion,
@@ -15,35 +13,50 @@ import {
 import {
   IconAlertCircle,
   IconAppWindow,
-  IconClock,
   IconFishHook,
   IconGraph,
-  IconHeartHandshake,
-  IconJetpackFilled,
   IconLayout,
   IconMap,
   IconPhoneRinging,
   IconProgressHelp,
   IconRocket,
   IconSquareFilled,
-  IconTrophy,
   IconTrophyFilled,
 } from "@tabler/icons-react";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { Marquee } from "@/components/ui/marquee";
-import { cn } from "@/lib/utils";
 import { RetroGrid } from "@/components/ui/retro-grid";
 import { CoolMode } from "@/components/ui/cool-mode";
 import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { TracingBeam } from "@/components/ui/tracing-beam";
 import { Spotlight } from "@/components/ui/spotlight";
 import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
-import { MagicCard } from "@/components/ui/magic-card";
 import { ShineBorder } from "@/components/ui/shine-border";
+import { getCalApi } from "@calcom/embed-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import ClientCarousel from "./(client)/components/ClientCarousel";
+import { cn } from "@/lib/utils";
+import { AnimatedBeam } from "@/components/ui/animated-beam";
+import { ROIBeam } from "./(client)/components/ROIBeam";
 
 export default function Page() {
   const [activeIndex, setActiveIndex] = useState(0);
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({ namespace: "lets-konnect-and-grow" });
+      cal("ui", {
+        theme: "dark",
+        cssVarsPerTheme: {
+          light: { "cal-brand": "#e85102" },
+          dark: { "cal-brand": "#e85102" },
+        },
+        hideEventTypeDetails: false,
+        layout: "month_view",
+      });
+    })();
+  }, []);
 
   const clientLogo = [
     { url: "/client/apna-food-logo.png" },
@@ -166,15 +179,20 @@ export default function Page() {
           </p>
           <div className="flex gap-5 mt-2">
             <Button
+              data-cal-namespace="lets-konnect-and-grow"
+              data-cal-link="sckonnect/lets-konnect-and-grow"
+              data-cal-config='{"layout":"month_view"}'
               className={"h-8 hover:scale-95 active:scale-90"}
               variant={"outline"}
             >
               <IconPhoneRinging /> Schedule A Call
             </Button>
             <CoolMode>
-              <Button className={"h-8 hover:scale-95 active:scale-90"}>
-                View Our Projects
-              </Button>
+              <Link href="/our-projects">
+                <Button className={"h-8 hover:scale-95 active:scale-90"}>
+                  View Our Projects
+                </Button>
+              </Link>
             </CoolMode>
           </div>
         </div>
@@ -208,6 +226,9 @@ export default function Page() {
         <div className="relative max-w-6xl mx-auto bg-cover w-full h-70 md:h-100  bg-[url(/achivement-img-2.jpg)] p-10 flex flex-col rounded-sm items-center justify-center">
           <div className="absolute top-0 left-0 w-full h-full mx-auto bg-black/40 "></div>
           <Button
+            data-cal-namespace="lets-konnect-and-grow"
+            data-cal-link="sckonnect/lets-konnect-and-grow"
+            data-cal-config='{"layout":"month_view"}'
             variant={"outline"}
             className={
               "w-max absolute top-5 cursor-none hover:scale-95 active:scale-90 left-5 shadow-2xl z-20"
@@ -271,15 +292,17 @@ export default function Page() {
                   </p>
                 </div>
                 <div className="mt-3">
-                  <Button className="h-8 rounded-md font-light">
-                    Our Projects
-                  </Button>
+                  <Link href="/our-projects">
+                    <Button className="h-8 rounded-md font-light">
+                      Our Projects
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
             <div className="flex items-center gap-3 border p-2 rounded-xl w-full sm:w-max px-5 font-bold text-sm md:text-base">
-              <IconTrophyFilled className="size-4" /> Award winning delivery
-              streak
+              <IconTrophyFilled className="size-4" /> Turning ideas into
+              impactful brands.
             </div>
           </div>
         </div>
@@ -310,7 +333,12 @@ export default function Page() {
           </div>
           <div className="w-full min-h-50 border rounded-md shadow p-5">
             <div className=" flex justify-center">
-              <span className="flex relative gap-2 justify-center font-bold text-sm items-center  w-max px-4 py-2 rounded-md">
+              <span
+                data-cal-namespace="lets-konnect-and-grow"
+                data-cal-link="sckonnect/lets-konnect-and-grow"
+                data-cal-config='{"layout":"month_view"}'
+                className="flex relative gap-2 cursor-pointer justify-center font-bold text-sm items-center  w-max px-4 py-2 rounded-md"
+              >
                 <IconSquareFilled className="text-orange-500 size-4" /> GET A
                 FREE QUOTE
                 <BorderBeam borderWidth={1} duration={8} size={50} />
@@ -374,6 +402,11 @@ export default function Page() {
             </div>
           </div>
         </div>
+      </div>
+      <ROIBeam />
+      {/* 90% ROI */}
+      <div className="w-full flex flex-col py-10">
+        <div className="max-w-6xl mx-auto w-full"></div>
       </div>
       {/* OUR SERVICES */}
       <div className="w-full min-h-100 flex flex-col overflow-hidden gap-3 bg-[#171719]">
@@ -483,7 +516,13 @@ export default function Page() {
               For instant results we do <br />
               <span className="text-primary"> performance marketing</span>
             </h2>
-            <Button variant={"outline"} className={"shadow my-8"}>
+            <Button
+              data-cal-namespace="lets-konnect-and-grow"
+              data-cal-link="sckonnect/lets-konnect-and-grow"
+              data-cal-config='{"layout":"month_view"}'
+              variant={"outline"}
+              className={"shadow my-8"}
+            >
               Schedule a Meeting Now
             </Button>
           </div>
@@ -650,76 +689,6 @@ export default function Page() {
               ))}
             </div>
           </section>
-        </div>
-      </div>
-      {/* OUR BLOGS */}
-      <div className="w-full min-h-50 pb-8">
-        <div className="max-w-6xl w-full mx-auto  space-y-10">
-          <div className="rounded-md shadow w-max  flex gap-2 overflow-hidden">
-            <span className="px-4 py-2 font-bold w-1/3">OUR</span>
-            <span className="px-4 py-2 bg-primary w-full text-white">
-              BLOGS
-            </span>
-          </div>
-          <div className="flex gap-5">
-            <div className="min-h-[8rem] w-80  rounded-lg  border-gray-200 hover:border-gray-300 transition-colors duration-200 flex flex-col gap-4 bg-white">
-              <div className="relative w-full h-60 flex items-center justify-center bg-gray-50 rounded-md overflow-hidden">
-                <img
-                  src="https://sckonnect.com/wp-content/uploads/2025/04/thumbnail-1.png"
-                  alt="Blog thumbnail"
-                  className="max-w-full max-h-full object-contain"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <h3 className="text-lg font-medium text-gray-900 line-clamp-2">
-                  Blog Title
-                </h3>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
-                  <IconClock className="w-4 h-4" />
-                  <span>24 June, 2023</span>
-                </div>
-              </div>
-            </div>
-            <div className="min-h-[8rem] w-80  rounded-lg  border-gray-200 hover:border-gray-300 transition-colors duration-200 flex flex-col gap-4 bg-white">
-              <div className="relative w-full h-60 flex items-center justify-center bg-gray-50 rounded-md overflow-hidden">
-                <img
-                  src="https://sckonnect.com/wp-content/uploads/2025/04/thumbnail-1.png"
-                  alt="Blog thumbnail"
-                  className="max-w-full max-h-full object-contain"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <h3 className="text-lg font-medium text-gray-900 line-clamp-2">
-                  Blog Title
-                </h3>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
-                  <IconClock className="w-4 h-4" />
-                  <span>24 June, 2023</span>
-                </div>
-              </div>
-            </div>
-            <div className="min-h-[8rem] w-80  rounded-lg  border-gray-200 hover:border-gray-300 transition-colors duration-200 flex flex-col gap-4 bg-white">
-              <div className="relative w-full h-60 flex items-center justify-center bg-gray-50 rounded-md overflow-hidden">
-                <img
-                  src="https://sckonnect.com/wp-content/uploads/2025/04/thumbnail-1.png"
-                  alt="Blog thumbnail"
-                  className="max-w-full max-h-full object-contain"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2 ">
-                <h3 className="text-lg font-medium text-gray-900 line-clamp-2">
-                  Blog Title
-                </h3>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
-                  <IconClock className="w-4 h-4" />
-                  <span>24 June, 2023</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>
