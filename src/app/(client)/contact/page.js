@@ -23,7 +23,22 @@ const World = dynamic(
   }
 );
 
-export default function page() {
+export default function Page() {
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({ namespace: "lets-konnect-and-grow" });
+      cal("ui", {
+        theme: "dark",
+        cssVarsPerTheme: {
+          light: { "cal-brand": "#e85102" },
+          dark: { "cal-brand": "#e85102" },
+        },
+        hideEventTypeDetails: false,
+        layout: "month_view",
+      });
+    })();
+  }, []);
+
   const globeConfig = {
     pointSize: 4,
     globeColor: "#e85102",
@@ -409,21 +424,6 @@ export default function page() {
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
   ];
-
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ namespace: "lets-konnect-and-grow" });
-      cal("ui", {
-        theme: "dark",
-        cssVarsPerTheme: {
-          light: { "cal-brand": "#e85102" },
-          dark: { "cal-brand": "#e85102" },
-        },
-        hideEventTypeDetails: false,
-        layout: "month_view",
-      });
-    })();
-  }, []);
 
   return (
     <>

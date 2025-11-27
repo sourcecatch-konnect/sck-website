@@ -105,7 +105,7 @@ export function ROIBeam() {
           {featureList.map((item, index) => (
             <div
               key={index}
-              className="w-max  px-3 py-1 border border-primary rounded-full"
+              className="w-max text-xs px-3 py-1 border border-primary rounded-full"
             >
               {item}
             </div>
