@@ -1,0 +1,56 @@
+{
+  "service": "Website Development",
+  "steps": [
+    {
+      "id": "website_type",
+      "type": "card",
+      "label": "Which type of website do you want?",
+      "options": [
+        {
+          "label": "🌐 I want a website to showcase myself or my business",
+          "value": "showcase"
+        },
+        {
+          "label": "🛍️ I want to sell products online",
+          "value": "sell_online"
+        },
+        {
+          "label": "🎯 I want to get leads or customers from my website",
+          "value": "get_leads"
+        },
+        {
+          "label": "📦 I want to display products but NOT sell online",
+          "value": "display_only"
+        },
+        { "label": "🤔 I'm not sure — help me decide", "value": "not_sure" }
+      ],
+
+      "conditional": {
+        "sell_online": ["product_count", "payment_methods"],
+        "get_leads": ["need_booking"]
+      }
+    },
+    {
+      "id": "business_name",
+      "type": "text",
+      "label": "What is the name of your business or brand?"
+    },
+    {
+      "id": "product_count",
+      "type": "number",
+      "label": "How many products do you plan to sell?"
+    },
+    {
+      "id": "payment_methods",
+      "type": "multi",
+      "label": "Which payment methods do you need?",
+      "options": ["UPI", "Card", "Netbanking", "COD"]
+    },
+    {
+      "id": "need_booking",
+      "type": "radio",
+      "label": "Do you need appointment or booking system?",
+      "options": ["Yes", "No"]
+    }
+  ]
+}

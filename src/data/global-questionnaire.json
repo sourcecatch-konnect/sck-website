@@ -1,0 +1,30 @@
+{
+  "service": "Global Questions",
+  "steps": [
+    {
+      "id": "business_name",
+      "type": "text",
+      "label": "What is the name of your business or brand?"
+    },
+    {
+      "id": "contact_email",
+      "type": "email",
+      "label": "What’s the best email to contact you on?"
+    },
+    {
+      "id": "contact_phone",
+      "type": "phone",
+      "label": "What phone number should we reach you at?"
+    },
+    {
+      "id": "business_description",
+      "type": "textarea",
+      "label": "Briefly describe what your business does. This helps me understand your vision."
+    },
+    {
+      "id": "target_audience",
+      "type": "textarea",
+      "label": "Who is your target audience? (e.g., age group, location, type of customers)"
+    }
+  ]
+}

@@ -36,10 +36,10 @@ import { ShineBorder } from "@/components/ui/shine-border";
 import { getCalApi } from "@calcom/embed-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import ClientCarousel from "./(client)/components/ClientCarousel";
+import ClientCarousel from "@/app/(client)/components/ClientCarousel";
 import { cn } from "@/lib/utils";
 import { AnimatedBeam } from "@/components/ui/animated-beam";
-import { ROIBeam } from "./(client)/components/ROIBeam";
+import { ROIBeam } from "@/app/(client)/components/ROIBeam";
 
 export default function Page() {
   const [activeIndex, setActiveIndex] = useState(0);
