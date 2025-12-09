@@ -5,10 +5,11 @@ export const useQuestionnaireStore = create(
   persist(
     (set, get) => ({
       selectedService: null,
-      websiteType: null,
+      formType: null,
       step: 0,
       questions: [],
       answers: {},
+      submitted: false,
 
       // LOAD QUESTIONS
       setQuestions: (data) => set({ questions: data }),
@@ -17,13 +18,13 @@ export const useQuestionnaireStore = create(
       setService: (service) =>
         set({
           selectedService: service,
-          websiteType: null,
+          formType: null,
           step: 0,
           answers: {},
           questions: [],
         }),
 
-      setWebsiteType: (type) => set({ websiteType: type }),
+      setformType: (type) => set({ formType: type }),
 
       // SET ANSWER
       setAnswer: (id, val) =>
@@ -93,10 +94,13 @@ export const useQuestionnaireStore = create(
       resetForm: () =>
         set({
           selectedService: null,
-          websiteType: null,
+          formType: null,
           step: 0,
           answers: {},
+          submitted: false,
         }),
+
+      setSubmitted: () => set(() => ({ submitted: true })),
     }),
     { name: "questionnaire-storage" }
   )

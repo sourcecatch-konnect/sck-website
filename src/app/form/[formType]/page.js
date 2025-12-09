@@ -1,18 +1,21 @@
 "use client";
 import QuestionRenderer from "@/components/form/QuestionRenderer";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import websiteQuestions from "@/data/website-questions.json";
 import { useQuestionnaireStore } from "@/lib/store/questionnaireStore";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter, useSearchParams } from "next/navigation";
-import { IconEye } from "@tabler/icons-react";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { IconCircle, IconEye } from "@tabler/icons-react";
+
 import clsx from "clsx";
 
 export default function Questions() {
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { formType } = useParams();
   const editStep = searchParams.get("edit");
 
   const {
@@ -25,13 +28,33 @@ export default function Questions() {
     prevStep,
     isAllAnswered,
     getVisibleQuestions,
+    setformType,
+    resetForm,
   } = useQuestionnaireStore();
 
   useEffect(() => {
-    if (questions.length === 0) {
-      setQuestions(websiteQuestions.steps);
+    async function loadData() {
+      resetForm();
+      try {
+        const data = await import(`@/data/${formType}-questions.json`);
+        setformType(formType);
+
+        setQuestions(data.default.steps);
+        setLoading(false);
+
+        console.log("loading set to false");
+      } catch (err) {
+        console.error("Form type not found:", formType);
+        router.push("/404");
+      }
     }
-  }, []);
+
+    if (questions.length === 0) {
+      loadData();
+    } else {
+      setLoading(false);
+    }
+  }, [formType, loading]);
 
   useEffect(() => window.scrollTo(0, 0), [step]);
 
@@ -39,8 +62,16 @@ export default function Questions() {
   useEffect(() => {
     if (editStep !== null) {
       useQuestionnaireStore.setState({ step: Number(editStep) });
+      setLoading(false);
     }
   }, [editStep]);
+
+  if (loading)
+    return (
+      <div className="flex h-screen justify-center items-center animate-spin ">
+        <IconCircle className="h-8 w-8 text-gray-600" />
+      </div>
+    );
 
   if (questions.length === 0) return <p>Loading...</p>;
 

@@ -1,8 +1,27 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { CheckCircle, Calendar, MessageCircle, Home } from "lucide-react";
+import { getCalApi } from "@calcom/embed-react";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function SuccessPage() {
+  const router = useRouter();
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({ namespace: "lets-konnect-and-grow" });
+      cal("ui", {
+        theme: "dark",
+        cssVarsPerTheme: {
+          light: { "cal-brand": "#e85102" },
+          dark: { "cal-brand": "#e85102" },
+        },
+        hideEventTypeDetails: false,
+        layout: "month_view",
+      });
+    })();
+  }, []);
   return (
     <div className="min-h-screen  flex items-center justify-center px-4">
       <div className="backdrop-blur-xl bg-white/30 border border-white/40 shadow-2xl rounded-2xl p-10 max-w-lg w-full text-center space-y-8">
@@ -25,32 +44,35 @@ export default function SuccessPage() {
 
         {/* Buttons */}
         <div className="flex flex-col gap-3">
-          <a
-            href="https://calendly.com/"
-            className="bg-black text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:opacity-90 transition"
+          <Button
+            data-cal-namespace="lets-konnect-and-grow"
+            data-cal-link="sckonnect/lets-konnect-and-grow"
+            data-cal-config='{"layout":"month_view"}'
+            variant={"outline"}
+            className="bg-black h-13 cursor-pointer text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:opacity-90 transition"
           >
             <Calendar size={18} /> Schedule a Call
-          </a>
+          </Button>
 
-          <a
-            href="https://wa.me/91XXXXXXXXXX"
+          <Link
+            href="https://wa.me/917499916257"
             className="border border-green-500 text-green-700 py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-green-50 transition"
           >
             <MessageCircle size={18} /> Chat on WhatsApp
-          </a>
+          </Link>
 
-          <a
-            href="/"
+          <Link
+            href="/form"
             className="text-gray-500 hover:text-black text-sm transition mt-1 flex items-center justify-center gap-2"
           >
-            <Home size={16} /> Return Home
-          </a>
+            <Home size={16} /> Fill Another Form
+          </Link>
         </div>
 
         {/* Footer Note */}
         <p className="text-xs text-gray-500 pt-4">
-          If you made a mistake or want to edit your responses, reply to the
-          email we’ll send you.
+          If you made a mistake or want to edit your responses, please contact
+          us on WhatsApp
         </p>
       </div>
     </div>

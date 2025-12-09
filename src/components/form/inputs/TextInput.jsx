@@ -8,7 +8,7 @@ export default function TextInput({ question, value, onChange }) {
       <Label>{question.label}</Label>
       <Input
         onChange={(e) => onChange(e.target.value)}
-        value={value}
+        value={value ?? ""}
         placeholder="Type here..."
       />
     </div>

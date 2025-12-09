@@ -1,6 +1,7 @@
 import { Open_Sans, Passion_One } from "next/font/google";
 import "./globals.css";
 import PageTransition from "./(client)/components/PageTransition";
+import { Toaster } from "@/components/ui/sonner";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -60,6 +61,7 @@ export default function RootLayout({ children }) {
       >
         <PageTransition>{children}</PageTransition>
         {/* <SmoothCursor /> */}
+        <Toaster />
       </body>
     </html>
   );
