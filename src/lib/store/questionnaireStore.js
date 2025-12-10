@@ -60,8 +60,17 @@ export const useQuestionnaireStore = create(
 
       // STEP SYSTEM BASED ON VISIBLE QUESTIONS
       nextStep: () => {
-        const { step, getVisibleQuestions } = get();
+        const { step, getVisibleQuestions, answers } = get();
         const visible = getVisibleQuestions();
+
+        const current = visible[step];
+
+        if (current.required) {
+          const ans = answers[current.id];
+          if (!ans || ans === "") {
+            return false; // block next step
+          }
+        }
 
         if (step < visible.length - 1) {
           set({ step: step + 1 });
@@ -84,8 +93,9 @@ export const useQuestionnaireStore = create(
       // CHECK IF ALL VISIBLE QUESTIONS ARE ANSWERED
       isAllAnswered: () => {
         const state = get();
-        const visible = state.getVisibleQuestions();
-        return visible.every((q) => {
+        const rawVisible = state.getVisibleQuestions();
+        const requiredQuestions = rawVisible.filter((q) => q.required);
+        return requiredQuestions.every((q) => {
           const val = state.answers[q.id];
           return val !== undefined && val !== null && val !== "";
         });

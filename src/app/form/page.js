@@ -38,36 +38,33 @@ export default function Page() {
                 Website <IconArrowUpRight />
               </div>
             </Link>
-            {/* <Link href={"/form/website"}> */}
-            <div
-              onClick={underDevelop}
-              className={
-                "w-max cursor-pointer flex gap-3 border rounded-xl px-4 hover:bg-accent duration-200 transition-all py-3"
-              }
-            >
-              Logo Design <IconArrowUpRight />
-            </div>
-            {/* </Link> */}
-            {/* <Link href={"/form/website"}> */}
-            <div
-              onClick={underDevelop}
-              className={
-                "w-max cursor-pointer flex gap-3 border rounded-xl px-4 hover:bg-accent duration-200 transition-all py-3"
-              }
-            >
-              Social Media Management <IconArrowUpRight />
-            </div>
-            {/* </Link> */}
-            {/* <Link href={"/form/website"}> */}
-            <div
-              onClick={underDevelop}
-              className={
-                "w-max cursor-pointer flex gap-3 border rounded-xl px-4 hover:bg-accent duration-200 transition-all py-3"
-              }
-            >
-              Performance Marketing <IconArrowUpRight />
-            </div>
-            {/* </Link> */}
+            <Link href={"/form/logo"}>
+              <div
+                className={
+                  "w-max cursor-pointer flex gap-3 border rounded-xl px-4 hover:bg-accent duration-200 transition-all py-3"
+                }
+              >
+                Logo Design <IconArrowUpRight />
+              </div>
+            </Link>
+            <Link href={"/form/social"}>
+              <div
+                className={
+                  "w-max cursor-pointer flex gap-3 border rounded-xl px-4 hover:bg-accent duration-200 transition-all py-3"
+                }
+              >
+                Social Media Management <IconArrowUpRight />
+              </div>
+            </Link>
+            <Link href={"/form/performance"}>
+              <div
+                className={
+                  "w-max cursor-pointer flex gap-3 border rounded-xl px-4 hover:bg-accent duration-200 transition-all py-3"
+                }
+              >
+                Performance Marketing <IconArrowUpRight />
+              </div>
+            </Link>
           </div>
         </div>
 

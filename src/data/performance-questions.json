@@ -1,0 +1,231 @@
+{
+  "service": "Performance Marketing",
+  "steps": [
+    {
+      "id": "ad_platforms",
+      "type": "multi",
+      "label": "Which platforms do you want to run ads on?",
+      "category": "Basics",
+      "required": true,
+      "options": [
+        "Meta Ads (Facebook + Instagram)",
+        "Google Search Ads",
+        "Google Display Ads",
+        "YouTube Ads",
+        "Remarketing / Retargeting",
+        "Shopping Ads (E-commerce)"
+      ]
+    },
+
+    {
+      "id": "business_name",
+      "type": "text",
+      "label": "What’s your business or brand name?",
+      "required": true
+    },
+
+    {
+      "id": "business_description",
+      "type": "textarea",
+      "label": "Tell me in simple words what your business does.",
+      "required": true
+    },
+
+    {
+      "id": "marketing_goals",
+      "type": "multi",
+      "label": "What are your main goals with paid ads?",
+      "required": true,
+      "options": [
+        "Get leads / enquiries",
+        "Get more sales",
+        "Get more website traffic",
+        "Grow brand awareness",
+        "Promote offers",
+        "Get app installs",
+        "Grow social media profiles"
+      ]
+    },
+
+    {
+      "id": "primary_kpi",
+      "type": "radio",
+      "label": "What is the most important KPI for you?",
+      "required": true,
+      "options": [
+        "Cost per lead",
+        "Cost per sale",
+        "ROAS (Return on ad spend)",
+        "Website traffic",
+        "Brand reach",
+        "Video views"
+      ]
+    },
+
+    {
+      "id": "target_location",
+      "type": "text",
+      "label": "Which cities or countries do you want to target?",
+      "required": true
+    },
+
+    {
+      "id": "target_audience_details",
+      "type": "textarea",
+      "label": "Describe your ideal audience (age, gender, interests, profession, income, etc.)",
+      "required": true
+    },
+
+    {
+      "id": "exclude_people",
+      "type": "textarea",
+      "label": "Anyone you want to exclude from targeting? (optional)"
+    },
+
+    {
+      "id": "monthly_ad_spend",
+      "type": "radio",
+      "label": "What is your planned monthly ad budget? (Only media spend, not service fee)",
+      "required": true,
+      "options": [
+        "₹10,000 – ₹30,000",
+        "₹30,000 – ₹60,000",
+        "₹60,000 – ₹1,00,000",
+        "₹1,00,000 – ₹3,00,000",
+        "₹3,00,000 – ₹5,00,000",
+        "₹5,00,000+"
+      ]
+    },
+
+    {
+      "id": "service_budget",
+      "type": "radio",
+      "label": "What’s your monthly budget for ad management services?",
+      "required": true,
+      "options": [
+        "₹10,000 – ₹15,000",
+        "₹15,000 – ₹25,000",
+        "₹25,000 – ₹40,000",
+        "₹40,000 – ₹60,000",
+        "₹60,000+"
+      ]
+    },
+
+    {
+      "id": "has_website",
+      "type": "radio",
+      "label": "Do you already have a website or landing page?",
+      "required": true,
+      "options": ["Yes", "No", "I need one"]
+    },
+
+    {
+      "id": "website_url",
+      "type": "text",
+      "label": "Website URL (if applicable)"
+    },
+
+    {
+      "id": "landing_page_goal",
+      "type": "textarea",
+      "label": "If you need a landing page, what should be its purpose? (sales, lead form, offer page, etc.)"
+    },
+
+    {
+      "id": "product_or_service",
+      "type": "textarea",
+      "label": "What product/service are we promoting?",
+      "required": true
+    },
+
+    {
+      "id": "price_or_packages",
+      "type": "textarea",
+      "label": "What are your prices, packages, or offers? (required for lead/sales ads)"
+    },
+
+    {
+      "id": "unique_selling_points",
+      "type": "textarea",
+      "label": "What makes your product/service special? Why should people choose you?",
+      "required": true
+    },
+
+    {
+      "id": "creative_available",
+      "type": "radio",
+      "label": "Do you already have creatives (images/videos) for ads?",
+      "required": true,
+      "options": ["Yes", "No", "Partially"]
+    },
+
+    {
+      "id": "need_creative_support",
+      "type": "radio",
+      "label": "Do you need us to create ad creatives for you?",
+      "required": true,
+      "options": ["Yes", "No", "Maybe"]
+    },
+
+    {
+      "id": "competitor_ads",
+      "type": "textarea",
+      "label": "Share any competitor ads or references you like (optional)"
+    },
+
+    {
+      "id": "meta_pixel_installed",
+      "type": "radio",
+      "label": "Do you have Meta Pixel installed on your website?",
+      "required": true,
+      "options": ["Yes", "No", "Not sure"]
+    },
+
+    {
+      "id": "google_tag_installed",
+      "type": "radio",
+      "label": "Do you have Google Tag / GA4 installed?",
+      "required": true,
+      "options": ["Yes", "No", "Not sure"]
+    },
+
+    {
+      "id": "ad_account_access",
+      "type": "radio",
+      "label": "Do you already have ad accounts created on Meta/Google?",
+      "required": true,
+      "options": ["Yes", "No", "Need help creating them"]
+    },
+
+    {
+      "id": "extra_access_notes",
+      "type": "textarea",
+      "label": "Any details about access/logins we should know?"
+    },
+
+    {
+      "id": "competitors",
+      "type": "textarea",
+      "label": "List your top competitors (optional)"
+    },
+
+    {
+      "id": "competitor_difference",
+      "type": "textarea",
+      "label": "How do you differentiate yourself from them?"
+    },
+
+    {
+      "id": "start_date",
+      "type": "text",
+      "label": "When do you want to start the campaigns?",
+      "required": true
+    },
+
+    {
+      "id": "extra_notes",
+      "type": "textarea",
+      "label": "Anything else you’d like us to know?"
+    }
+  ]
+}

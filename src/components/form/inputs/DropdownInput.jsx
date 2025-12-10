@@ -12,7 +12,10 @@ import { Label } from "@/components/ui/label";
 export default function DropdownInput({ question, value, onChange }) {
   return (
     <div className="flex flex-col gap-2">
-      <Label className="text-lg">{question.label}</Label>
+      <Label className={"flex text-xl items-center gap-1"}>
+        {question.label}
+        {question.required && <span className="text-red-500">*</span>}
+      </Label>
 
       <Select value={value} onValueChange={(v) => onChange(v)}>
         <SelectTrigger className="h-11">

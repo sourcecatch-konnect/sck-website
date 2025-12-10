@@ -9,7 +9,10 @@ import "@/styles/phone-input.css";
 export default function PhoneInputField({ question, value, onChange }) {
   return (
     <div className="flex flex-col gap-2">
-      <Label className="text-lg font-medium">{question.label}</Label>
+      <Label className={"flex text-xl items-center gap-1"}>
+        {question.label}
+        {question.required && <span className="text-red-500">*</span>}
+      </Label>
 
       <PhoneInput
         international

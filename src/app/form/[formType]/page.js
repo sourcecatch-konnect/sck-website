@@ -12,6 +12,7 @@ import { IconCircle, IconEye } from "@tabler/icons-react";
 import clsx from "clsx";
 
 export default function Questions() {
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -34,27 +35,23 @@ export default function Questions() {
 
   useEffect(() => {
     async function loadData() {
+      setLoading(true);
       resetForm();
+
       try {
         const data = await import(`@/data/${formType}-questions.json`);
         setformType(formType);
-
         setQuestions(data.default.steps);
-        setLoading(false);
-
-        console.log("loading set to false");
       } catch (err) {
         console.error("Form type not found:", formType);
         router.push("/404");
+      } finally {
+        setLoading(false);
       }
     }
 
-    if (questions.length === 0) {
-      loadData();
-    } else {
-      setLoading(false);
-    }
-  }, [formType, loading]);
+    loadData();
+  }, [formType]);
 
   useEffect(() => window.scrollTo(0, 0), [step]);
 
@@ -79,6 +76,19 @@ export default function Questions() {
   const currentQuestion = visibleQuestions[step];
 
   const handleNext = () => {
+    const current = currentQuestion;
+
+    if (current.required) {
+      const val = answers[current.id];
+
+      if (!val || val === "") {
+        setError(true);
+        setTimeout(() => setError(false), 600);
+        return;
+      }
+    }
+
+    setError(false);
     const isDone = nextStep();
     if (isDone) {
       router.push("/form/review");
@@ -105,15 +115,32 @@ export default function Questions() {
         <motion.div
           key={currentQuestion.id}
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={
+            error
+              ? {
+                  opacity: 1, // Keep it visible!
+                  x: [0, -10, 10, -10, 10, 0],
+                  transition: { duration: 0.4 },
+                }
+              : { opacity: 1, y: 0 }
+          }
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
         >
           <QuestionRenderer
             question={currentQuestion}
             value={answers[currentQuestion.id]}
-            onChange={(val) => setAnswer(currentQuestion.id, val)}
+            onChange={(val) => {
+              setError(false);
+              setAnswer(currentQuestion.id, val);
+            }}
           />
+
+          {error && (
+            <p className="text-red-500 p-3 rounded-md border bg-red-100 text-sm mt-2">
+              This field is required.
+            </p>
+          )}
         </motion.div>
       </AnimatePresence>
 

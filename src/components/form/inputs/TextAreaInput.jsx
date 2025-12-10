@@ -6,7 +6,10 @@ import React from "react";
 export default function TextareaInput({ question, value, onChange }) {
   return (
     <div className="flex flex-col gap-2">
-      <Label>{question.label}</Label>
+      <Label className={"flex text-xl items-center gap-1"}>
+        {question.label}
+        {question.required && <span className="text-red-500">*</span>}
+      </Label>
       <Textarea
         onChange={(e) => onChange(e.target.value)}
         value={value}

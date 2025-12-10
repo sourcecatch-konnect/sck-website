@@ -4,80 +4,321 @@
     {
       "id": "website_type",
       "type": "card",
-      "label": "Which type of website do you want?",
+      "label": "What type of website do you want?",
       "category": "Project Basics",
+      "required": true,
       "options": [
         {
-          "label": "🌐 I want a website to showcase myself or my business",
-          "value": "showcase"
+          "label": "🌐 I want a portfolio or personal website",
+          "value": "portfolio"
         },
         {
-          "label": "🛍️ I want to sell products online",
-          "value": "sell_online"
+          "label": "🏢 I want a business website for my company",
+          "value": "business"
         },
         {
-          "label": "🎯 I want to get leads or customers from my website",
-          "value": "get_leads"
+          "label": "🛒 I want to sell products online (E-commerce)",
+          "value": "ecommerce"
         },
         {
-          "label": "📦 I want to display products but NOT sell online",
-          "value": "display_only"
+          "label": "📦 I want to show my products but NOT sell online",
+          "value": "catalogue"
         },
         {
-          "label": "🤔 I'm not sure — help me decide",
-          "value": "not_sure"
-        }
+          "label": "🎯 I want a website to generate leads or enquiries",
+          "value": "lead_gen"
+        },
+        { "label": "🤔 I'm not sure — help me decide", "value": "not_sure" }
       ],
       "conditional": {
-        "sell_online": ["product_count", "payment_methods"],
-        "get_leads": ["need_booking"]
+        "ecommerce": ["product_count", "payment_methods", "shipping_required"],
+        "lead_gen": ["need_booking"],
+        "business": ["services_list"],
+        "portfolio": ["portfolio_items"],
+        "not_sure": ["help_decide"]
       }
     },
+
+    {
+      "id": "help_decide",
+      "type": "textarea",
+      "label": "Tell me what you're trying to achieve, and I'll guide you to the right website type.",
+      "category": "Project Basics"
+    },
+
+    {
+      "id": "years_in_business",
+      "type": "text",
+      "label": "How many years have you been in this business?",
+      "category": "Business Information"
+    },
+    {
+      "id": "primary_contact_person",
+      "type": "text",
+      "label": "Who will be the primary contact person for this project?",
+      "required": true
+    },
+    {
+      "id": "early_results",
+      "type": "textarea",
+      "label": "Are there any specific results you'd love to see in the first few months after launch?"
+    },
+    {
+      "id": "launch_date",
+      "type": "text",
+      "label": "Do you have a target launch date or any special event you're aiming for?"
+    },
+
+    {
+      "id": "business_category",
+      "type": "card",
+      "label": "Which category best describes your business?",
+      "category": "Business Type",
+      "required": true,
+      "options": [
+        { "label": "🏗️ Construction / Contractor", "value": "construction" },
+        { "label": "💇 Beauty Parlour / Salon", "value": "beauty" },
+        { "label": "🍽️ Restaurant / Cafe", "value": "restaurant" },
+        { "label": "📚 Coaching / Classes / Education", "value": "coaching" },
+        { "label": "🧾 Services-Based Business", "value": "services" },
+        {
+          "label": "🛒 Product-Based Business (non-ecommerce)",
+          "value": "product_based"
+        },
+        { "label": "🤔 Something else", "value": "other" }
+      ],
+      "conditional": {
+        "construction": ["construction_services", "construction_locations"],
+        "beauty": ["beauty_services", "need_online_booking"],
+        "restaurant": [
+          "menu_available",
+          "table_booking_required",
+          "delivery_partners"
+        ],
+        "coaching": ["course_list", "batch_details"],
+        "services": ["services_list"],
+        "product_based": ["product_showcase_details"],
+        "other": ["describe_business_category"]
+      }
+    },
+
+    {
+      "id": "construction_services",
+      "type": "textarea",
+      "required": true,
+      "label": "What type of construction or contractor work do you offer?"
+    },
+    {
+      "id": "construction_locations",
+      "type": "textarea",
+      "required": true,
+      "label": "Which areas or cities do you provide your services in?"
+    },
+
+    {
+      "id": "beauty_services",
+      "type": "textarea",
+      "required": true,
+      "label": "Which beauty or salon services do you provide?"
+    },
+    {
+      "id": "need_online_booking",
+      "type": "radio",
+      "required": true,
+      "label": "Do you want customers to book appointments online?",
+      "options": ["Yes", "No"]
+    },
+
+    {
+      "id": "menu_available",
+      "type": "radio",
+      "required": true,
+      "label": "Do you already have a menu ready?",
+      "options": ["Yes", "No"]
+    },
+    {
+      "id": "table_booking_required",
+      "type": "radio",
+      "required": true,
+      "label": "Do you want a table reservation system?",
+      "options": ["Yes", "No"]
+    },
+    {
+      "id": "delivery_partners",
+      "type": "multi",
+      "required": true,
+      "label": "Are you on any delivery platforms?",
+      "options": ["Swiggy", "Zomato", "Own Delivery", "Not yet"]
+    },
+
+    {
+      "id": "course_list",
+      "type": "textarea",
+      "required": true,
+      "label": "Which courses or classes do you offer?"
+    },
+    {
+      "id": "batch_details",
+      "type": "textarea",
+      "required": true,
+      "label": "Do you have batch timings or schedules you'd like to show?"
+    },
+
+    {
+      "id": "product_showcase_details",
+      "type": "textarea",
+      "required": true,
+      "label": "Tell me a little about the products you want to display."
+    },
+
+    {
+      "id": "describe_business_category",
+      "type": "textarea",
+      "required": true,
+      "label": "Tell me a bit about what you do so I can understand your business better."
+    },
+
     {
       "id": "business_name",
       "type": "text",
-      "label": "What is the name of your business or brand?",
-      "category": "Business Information"
+      "required": true,
+      "label": "What is the name of your business or brand?"
+    },
+    {
+      "id": "tagline",
+      "type": "text",
+      "label": "Do you have a tagline or slogan? (optional)"
     },
     {
       "id": "contact_email",
       "type": "email",
-      "label": "What’s the best email to contact you on?"
+      "required": true,
+      "label": "Your best contact email"
     },
     {
       "id": "contact_phone",
       "type": "phone",
-      "label": "What phone number should we reach you at?"
+      "required": true,
+      "label": "Your best contact number"
     },
     {
       "id": "business_description",
       "type": "textarea",
-      "label": "Briefly describe what your business does. This helps me understand your vision."
+      "required": true,
+      "label": "Tell me in simple words what your business does."
     },
+
     {
-      "id": "target_audience",
-      "type": "textarea",
-      "label": "Who is your target audience? (e.g., age group, location, type of customers)"
+      "id": "pages_needed",
+      "type": "multi",
+      "required": true,
+      "label": "Which pages do you want on your website?",
+      "options": [
+        "Home",
+        "About",
+        "Services",
+        "Products",
+        "Gallery",
+        "Testimonials",
+        "Blog",
+        "Contact",
+        "FAQ",
+        "Custom Page"
+      ]
     },
+
+    {
+      "id": "content_ready",
+      "type": "radio",
+      "required": true,
+      "label": "Do you already have your content (text & images) ready?",
+      "options": ["Yes", "No", "Partially"]
+    },
+
+    {
+      "id": "design_preference",
+      "type": "textarea",
+      "label": "How would you like the website to look? (simple, modern, premium, bold, etc.)"
+    },
+
+    {
+      "id": "reference_websites",
+      "type": "textarea",
+      "label": "Share any reference websites you like (optional)."
+    },
+
+    {
+      "id": "features_required",
+      "type": "multi",
+      "label": "Which features do you want?",
+      "options": [
+        "User Login",
+        "Admin Panel",
+        "Blog System",
+        "Search Feature",
+        "Animations",
+        "WhatsApp Chat Button",
+        "Newsletter Signup",
+        "Testimonials Section",
+        "SEO Optimization",
+        "Multi-language Support"
+      ]
+    },
+
     {
       "id": "product_count",
       "type": "number",
-      "label": "How many products do you plan to sell?",
-      "category": "E-commerce Details"
+      "required": true,
+      "label": "How many products will you sell?"
     },
     {
       "id": "payment_methods",
       "type": "multi",
-      "label": "Which payment methods do you need?",
-      "category": "E-commerce Details",
-      "options": ["UPI", "Card", "Netbanking", "COD"]
+      "required": true,
+      "label": "Which payment methods should be supported?",
+      "options": [
+        "UPI",
+        "Credit/Debit Card",
+        "Netbanking",
+        "Cash on Delivery",
+        "Wallets"
+      ]
     },
     {
-      "id": "need_booking",
+      "id": "shipping_required",
       "type": "radio",
-      "label": "Do you need appointment or booking system?",
-      "category": "Features",
+      "required": true,
+      "label": "Do you need shipping/delivery integration?",
       "options": ["Yes", "No"]
+    },
+
+    {
+      "id": "budget_range",
+      "type": "radio",
+      "required": true,
+      "label": "What’s your budget range for this project?",
+      "options": [
+        "₹50,000 – ₹1,00,000",
+        "₹1,00,000 – ₹2,00,000",
+        "₹2,00,000 – ₹3,50,000",
+        "₹3,50,000 – ₹5,00,000",
+        "₹5,00,000 – ₹8,00,000",
+        "₹8,00,000+"
+      ]
+    },
+
+    {
+      "id": "timeline",
+      "type": "radio",
+      "required": true,
+      "label": "How soon do you want the website to go live?",
+      "options": ["2-4 weeks", "4-6 weeks", "2-3 months", "No strict deadline"]
+    },
+
+    {
+      "id": "extra_notes",
+      "type": "textarea",
+      "label": "Anything else you want to share?"
     }
   ]
 }

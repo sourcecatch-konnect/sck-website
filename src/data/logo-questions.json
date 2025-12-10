@@ -1,0 +1,222 @@
+{
+  "service": "Logo Design",
+  "steps": [
+    {
+      "id": "logo_type",
+      "type": "card",
+      "label": "What kind of logo are you looking for?",
+      "category": "Basics",
+      "required": true,
+      "options": [
+        { "label": "🔤 Wordmark (Text-based logo)", "value": "wordmark" },
+        {
+          "label": "🔣 Lettermark (Initials or short form)",
+          "value": "lettermark"
+        },
+        { "label": "🖼️ Symbol or Icon-based", "value": "symbol" },
+        { "label": "📝 Combination (Text + Icon)", "value": "combo" },
+        { "label": "🤔 Not sure — help me decide", "value": "not_sure" }
+      ],
+      "conditional": {
+        "not_sure": ["help_decide"]
+      }
+    },
+
+    {
+      "id": "help_decide",
+      "type": "textarea",
+      "label": "Tell me a bit about what you're trying to achieve with your logo, and I’ll guide you.",
+      "required": true
+    },
+
+    {
+      "id": "business_name",
+      "type": "text",
+      "label": "What’s your business or brand name?",
+      "category": "Brand Info",
+      "required": true
+    },
+
+    {
+      "id": "business_name_ideology",
+      "type": "textarea",
+      "label": "What is the meaning or ideology behind your business name?"
+    },
+
+    {
+      "id": "tagline",
+      "type": "text",
+      "label": "Do you have a tagline or slogan you want to include in the logo?"
+    },
+
+    {
+      "id": "primary_service",
+      "type": "textarea",
+      "label": "What is the primary service or product your business provides?",
+      "required": true
+    },
+
+    {
+      "id": "business_goals",
+      "type": "textarea",
+      "label": "What are your short-term, medium-term, and long-term business goals?"
+    },
+
+    {
+      "id": "brand_meaning",
+      "type": "textarea",
+      "label": "Does your brand or company name have a deeper meaning or story?"
+    },
+
+    {
+      "id": "business_description",
+      "type": "textarea",
+      "label": "Tell me in simple words what your business does.",
+      "required": true
+    },
+
+    {
+      "id": "years_in_business",
+      "type": "text",
+      "label": "How many years have you been in this business?"
+    },
+
+    {
+      "id": "logo_goals",
+      "type": "textarea",
+      "label": "What do you want your new logo to achieve for your brand?",
+      "required": true
+    },
+
+    {
+      "id": "logo_style",
+      "type": "multi",
+      "label": "Which style do you prefer?",
+      "required": true,
+      "options": [
+        "Minimal & Clean",
+        "Modern & Bold",
+        "Classic & Elegant",
+        "Playful & Friendly",
+        "Luxury Premium",
+        "Vintage / Retro"
+      ]
+    },
+
+    {
+      "id": "logo_feel",
+      "type": "multi",
+      "label": "How do you want your logo to feel?",
+      "required": true,
+      "options": [
+        "Friendly",
+        "Trustworthy",
+        "Premium",
+        "Energetic",
+        "Professional",
+        "Creative",
+        "Serious"
+      ]
+    },
+
+    {
+      "id": "color_preference",
+      "type": "multi",
+      "label": "Do you have preferred colors?",
+      "required": true,
+      "options": [
+        "Black / White",
+        "Blue Shades",
+        "Red Shades",
+        "Green Shades",
+        "Gold / Premium",
+        "No preference"
+      ]
+    },
+
+    {
+      "id": "avoid_colors",
+      "type": "text",
+      "label": "Any colors you absolutely want to avoid?"
+    },
+
+    {
+      "id": "symbol_ideas",
+      "type": "textarea",
+      "label": "Any specific symbols or icon ideas you would like included? (optional)"
+    },
+
+    {
+      "id": "competitors",
+      "type": "textarea",
+      "label": "Who are your top competitors?"
+    },
+
+    {
+      "id": "competitor_difference",
+      "type": "textarea",
+      "label": "How do you differentiate yourself from your competitors?"
+    },
+
+    {
+      "id": "competitor_brand_likes_dislikes",
+      "type": "textarea",
+      "label": "What do you like or dislike about your competitors’ branding?"
+    },
+
+    {
+      "id": "reference_logos",
+      "type": "textarea",
+      "label": "Share any logos you like (or describe them)."
+    },
+
+    {
+      "id": "where_logo_used",
+      "type": "multi",
+      "label": "Where will you mostly use the logo?",
+      "required": true,
+      "options": [
+        "Website",
+        "Mobile App",
+        "Business Cards",
+        "Social Media",
+        "Packaging",
+        "Store Board / Signage"
+      ]
+    },
+
+    {
+      "id": "file_formats_needed",
+      "type": "multi",
+      "label": "Which file formats do you need?",
+      "options": ["PNG", "JPG", "SVG", "PDF", "Brand Kit"]
+    },
+
+    {
+      "id": "budget_range",
+      "type": "radio",
+      "label": "What’s your budget range for logo design?",
+      "required": true,
+      "options": [
+        "₹10,000 – ₹20,000",
+        "₹20,000 – ₹35,000",
+        "₹35,000 – ₹60,000",
+        "₹60,000 – ₹1,00,000",
+        "₹1,00,000+"
+      ]
+    },
+
+    {
+      "id": "deadline",
+      "type": "text",
+      "label": "Do you have a deadline in mind?",
+      "required": true
+    },
+
+    {
+      "id": "extra_notes",
+      "type": "textarea",
+      "label": "Anything else you'd like me to know?"
+    }
+  ]
+}

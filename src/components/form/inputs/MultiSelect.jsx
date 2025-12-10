@@ -23,7 +23,10 @@ export default function MultiSelect({ question, value = [], onChange }) {
 
   return (
     <div className="flex flex-col gap-3">
-      <Label className="text-lg">{question.label}</Label>
+      <Label className={"flex text-xl items-center gap-1"}>
+        {question.label}
+        {question.required && <span className="text-red-500">*</span>}
+      </Label>
 
       <div
         className="border rounded-lg p-3 cursor-pointer"

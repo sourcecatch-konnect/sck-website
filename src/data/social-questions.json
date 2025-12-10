@@ -1,0 +1,211 @@
+{
+  "service": "Social Media Management",
+  "steps": [
+    {
+      "id": "channels",
+      "type": "multi",
+      "label": "Which social media platforms do you want help with?",
+      "category": "Basics",
+      "required": true,
+      "options": [
+        "Instagram",
+        "Facebook",
+        "YouTube",
+        "LinkedIn",
+        "Twitter / X",
+        "Google My Business",
+        "Pinterest"
+      ]
+    },
+
+    {
+      "id": "posts_per_month",
+      "type": "number",
+      "label": "How many posts do you expect per month?",
+      "required": true
+    },
+
+    {
+      "id": "reels_per_month",
+      "type": "number",
+      "label": "How many reels or short videos do you expect per month?",
+      "required": true
+    },
+
+    {
+      "id": "stories_needed",
+      "type": "radio",
+      "label": "Do you also want daily/regular stories?",
+      "required": true,
+      "options": ["Yes", "No", "Occasionally"]
+    },
+
+    {
+      "id": "ad_services",
+      "type": "radio",
+      "label": "Do you want us to run ads to promote your posts?",
+      "required": true,
+      "options": [
+        "Yes, Meta Ads (Facebook + Instagram)",
+        "Yes, Google Ads",
+        "Both Meta & Google",
+        "No ads needed right now"
+      ]
+    },
+
+    {
+      "id": "monthly_ad_budget",
+      "type": "number",
+      "label": "If you're running ads, what's your monthly ad budget? (optional)"
+    },
+
+    {
+      "id": "business_name",
+      "type": "text",
+      "label": "What’s your business or brand name?",
+      "required": true
+    },
+
+    {
+      "id": "business_description",
+      "type": "textarea",
+      "label": "Tell me in simple words what your business does.",
+      "required": true
+    },
+
+    {
+      "id": "target_audience",
+      "type": "textarea",
+      "label": "Who is your target audience? (age, city, interests, etc.)",
+      "required": true
+    },
+
+    {
+      "id": "goals",
+      "type": "multi",
+      "label": "What are your main goals with social media?",
+      "required": true,
+      "options": [
+        "Get more followers",
+        "Improve branding",
+        "Get sales",
+        "Get enquiries/leads",
+        "Build trust",
+        "Grow community",
+        "Increase website visits"
+      ]
+    },
+
+    {
+      "id": "brand_voice",
+      "type": "multi",
+      "label": "How should your brand feel on social media?",
+      "required": true,
+      "options": [
+        "Professional",
+        "Friendly",
+        "Premium / Luxury",
+        "Funny / Casual",
+        "Minimal & Clean",
+        "Bold & Creative"
+      ]
+    },
+
+    {
+      "id": "content_type_preference",
+      "type": "multi",
+      "label": "What type of content do you want?",
+      "options": [
+        "Static Posts",
+        "Reels",
+        "Stories",
+        "Carousels",
+        "Informational Content",
+        "Promotional Content",
+        "Behind-the-scenes",
+        "Testimonials",
+        "Product Features",
+        "Announcements"
+      ]
+    },
+
+    {
+      "id": "reference_pages",
+      "type": "textarea",
+      "label": "Share 2–3 social pages you like (optional)."
+    },
+
+    {
+      "id": "what_to_avoid",
+      "type": "textarea",
+      "label": "Anything you'd like us to avoid in your content? (colors, tone, style)"
+    },
+
+    {
+      "id": "competitors",
+      "type": "textarea",
+      "label": "Who are your competitors on social media?"
+    },
+
+    {
+      "id": "competitor_likes_dislikes",
+      "type": "textarea",
+      "label": "What do you like or dislike about your competitors’ pages?"
+    },
+
+    {
+      "id": "access_available",
+      "type": "radio",
+      "label": "Do you already have access/logins for your pages (Instagram/Facebook/etc.)?",
+      "required": true,
+      "options": ["Yes", "No", "Need help setting it up"]
+    },
+
+    {
+      "id": "posting_preference",
+      "type": "radio",
+      "label": "Who will publish the posts?",
+      "required": true,
+      "options": ["You will publish", "I want you to publish", "Either works"]
+    },
+
+    {
+      "id": "reviews_and_approvals",
+      "type": "radio",
+      "label": "Do you want post approval before publishing?",
+      "required": true,
+      "options": [
+        "Yes, every post",
+        "Only important posts",
+        "No approval needed"
+      ]
+    },
+
+    {
+      "id": "management_budget",
+      "type": "radio",
+      "label": "What's your monthly budget for social media management?",
+      "required": true,
+      "options": [
+        "₹10,000 – ₹20,000",
+        "₹20,000 – ₹35,000",
+        "₹35,000 – ₹60,000",
+        "₹60,000 – ₹1,00,000",
+        "₹1,00,000+"
+      ]
+    },
+
+    {
+      "id": "start_date",
+      "type": "text",
+      "label": "When do you want us to start?",
+      "required": true
+    },
+
+    {
+      "id": "extra_notes",
+      "type": "textarea",
+      "label": "Anything else you'd like us to know?"
+    }
+  ]
+}
