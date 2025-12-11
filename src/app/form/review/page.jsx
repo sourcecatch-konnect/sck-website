@@ -4,17 +4,18 @@ import React, { useEffect, useState } from "react";
 import websiteQuestions from "@/data/website-questions.json";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { IconPencil } from "@tabler/icons-react";
+import { IconLoader2, IconPencil } from "@tabler/icons-react";
 import axios from "axios";
+import clsx from "clsx";
 
 export default function ReviewComponent() {
   const router = useRouter();
+  const [submitting, setSubmitting] = useState(false);
   const [hydrated, setHydrated] = useState(false);
   const {
     answers,
-
     getVisibleQuestions,
-    formType,
+    currentFormType,
     resetForm,
     setSubmitted,
     submitted,
@@ -31,14 +32,20 @@ export default function ReviewComponent() {
   const visibleQuestions = getVisibleQuestions();
 
   const submitForm = async () => {
-    const answers = buildFinalPayload();
+    if (submitting) return;
+    setSubmitting(true);
+
     try {
-      await axios.post("/api/submitForm", { formType, answers });
+      const answers = buildFinalPayload();
+
+      await axios.post("/api/submitForm", { currentFormType, answers });
       router.push("/form/success");
       setSubmitted();
       resetForm();
     } catch (error) {
       console.log("Error", error);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -67,8 +74,6 @@ export default function ReviewComponent() {
 
     return merged;
   };
-
-  console.log(JSON.stringify(answers, null, 2));
 
   return (
     <div className="max-w-2xl mx-auto py-8 space-y-10">
@@ -111,7 +116,23 @@ export default function ReviewComponent() {
         ))}
       </div>
 
-      <Button onClick={submitForm}>Confirm & Submit →</Button>
+      <Button
+        onClick={submitForm}
+        disabled={submitting}
+        className={clsx(
+          "flex items-center gap-2",
+          submitting && "opacity-70 cursor-not-allowed"
+        )}
+      >
+        {submitting ? (
+          <>
+            <IconLoader2 className="animate-spin h-4 w-4" />
+            Submitting...
+          </>
+        ) : (
+          <>Confirm & Submit →</>
+        )}
+      </Button>
     </div>
   );
 }

@@ -5,11 +5,14 @@ export const useQuestionnaireStore = create(
   persist(
     (set, get) => ({
       selectedService: null,
-      formType: null,
+      currentFormType: null,
+      hydrated: false,
       step: 0,
       questions: [],
       answers: {},
       submitted: false,
+
+      setHydrated: () => set({ hydrated: true }),
 
       // LOAD QUESTIONS
       setQuestions: (data) => set({ questions: data }),
@@ -18,13 +21,15 @@ export const useQuestionnaireStore = create(
       setService: (service) =>
         set({
           selectedService: service,
-          formType: null,
+          currentFormType: null,
           step: 0,
           answers: {},
           questions: [],
         }),
 
-      setformType: (type) => set({ formType: type }),
+      setformType: (type) => {
+        set({ currentFormType: type });
+      },
 
       // SET ANSWER
       setAnswer: (id, val) =>
@@ -104,7 +109,7 @@ export const useQuestionnaireStore = create(
       resetForm: () =>
         set({
           selectedService: null,
-          formType: null,
+          currentFormType: null,
           step: 0,
           answers: {},
           submitted: false,
@@ -112,6 +117,12 @@ export const useQuestionnaireStore = create(
 
       setSubmitted: () => set(() => ({ submitted: true })),
     }),
-    { name: "questionnaire-storage" }
+    {
+      name: "questionnaire-storage",
+
+      onRehydrateStorage: () => (state) => {
+        state?.setHydrated();
+      },
+    }
   )
 );

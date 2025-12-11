@@ -7,7 +7,9 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req) {
   try {
-    const { formType, answers } = await req.json();
+    const raw = await req.json();
+    const formType = raw.currentFormType;
+    const { answers } = raw;
 
     if (!formType || !answers) {
       return Response.json({ error: "Missing data" }, { status: 400 });

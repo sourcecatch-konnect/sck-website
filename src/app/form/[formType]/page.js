@@ -1,6 +1,6 @@
 "use client";
 import QuestionRenderer from "@/components/form/QuestionRenderer";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import websiteQuestions from "@/data/website-questions.json";
 import { useQuestionnaireStore } from "@/lib/store/questionnaireStore";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,7 @@ export default function Questions() {
   const searchParams = useSearchParams();
   const { formType } = useParams();
   const editStep = searchParams.get("edit");
+  const firstLoadRef = useRef(true);
 
   const {
     step,
@@ -31,27 +32,37 @@ export default function Questions() {
     getVisibleQuestions,
     setformType,
     resetForm,
+    currentFormType,
+    hydrated,
   } = useQuestionnaireStore();
 
   useEffect(() => {
+    if (!hydrated) return;
+
+    if (formType !== currentFormType) {
+      resetForm();
+    }
+
     async function loadData() {
       setLoading(true);
-      resetForm();
 
       try {
         const data = await import(`@/data/${formType}-questions.json`);
         setformType(formType);
+
         setQuestions(data.default.steps);
       } catch (err) {
+        console.log(err);
+
         console.error("Form type not found:", formType);
-        router.push("/404");
+        // router.push("/404");
       } finally {
         setLoading(false);
       }
     }
 
     loadData();
-  }, [formType]);
+  }, [hydrated, formType]);
 
   useEffect(() => window.scrollTo(0, 0), [step]);
 
